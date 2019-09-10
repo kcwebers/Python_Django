@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'books_authors_app/css/bootstrap.css'%}">
+
+    <title>Books & Authors</title>
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+
+        <div class="col right">
+        <h1> Titles in our Database </h1>
+        <table class="table">
+            <thead class="thead-dark">
+              <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Title</th>
+                <th scope="col">Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+            {% for book in all_books %}
+              <tr>
+                <th scope="row">{{ book.id }}</th>
+                <td>{{ book.title }}</td>
+                <td><a class="btn btn-dark" href="/books/{{ book.id }}">View</a></td>
+              </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+        </div> <!-- right side -->
+
+        <div class="col left">
+            <h1> Would you like to add a Title? </h1>
+
+            <form action="/add_title" method="POST">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="title">Title:</label>
+                    <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter title" name="title">
+                </div>
+                <div class="form-group">
+                    <label for="description">Description:</label>
+                    <input type="text" class="form-control" id="exampleInputPassword1" placeholder="Provide a brief description..." name="desc">
+                </div>
+                <input type="submit" value="Add" class="btn btn-danger">
+            </form>
+            <a href="/authors" class="btn btn-danger mt-3">View Author Info</a>
+        </div>
+
+        </div>
+    </div>
+</body>
+</html>

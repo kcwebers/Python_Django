@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+
+    <title>Random umbers</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'app_name/css/bootstrap.css'%}">
+</head>
+<body>
+
+
+    <div class="mt-5 text-center container">
+        <p class="display-4">Random Word <span class="text-info">(Attempt # {{ session }})</span></p>
+        <p class="pt-5 pb-5 bg-light display-2 text-info">{{ random_word }}</p>
+
+        <a class="btn btn-info" href="/random_word">Generate</a>
+        <a class="btn btn-danger" href="/clear">Clear</a>
+    </div> <!-- end of container -->
+
+
+    
+</body>
+</html>

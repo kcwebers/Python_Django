@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'book_app/css/bootstrap.css'%}">
+
+    <title>Login & Register</title>
+</head>
+<body>
+    <div class="container">
+        <a href="/logout" class="btn btn-danger float-right mt-4 mr-4">Log Out</a>
+        <h1 class="border border-info shadow p-3 mr-2 mb-2"> Welcome  {{ request.session.first_name }} !</h1>
+
+        {% if messages %} <!-- check if there are any messages -->
+            {% for message in messages %} <!-- loop through the messages -->
+                {% if message.extra_tags == 'success' %}
+                <span class="error text-success small">{{ message }}</span> <!-- display each message in a paragraph tag -->
+                {% endif %}
+            {% endfor %}
+        {% endif %}
+        
+        <div class="row">
+            <div class="col border border-info shadow p-3 mr-2 mb-2">
+                <h1 class="text-info"> Add a Book </h1> 
+
+            <form class="form-control" action="/add_book" method="POST">
+                {% csrf_token %}
+                <div class="form-group">
+
+                <label for="name_input">Title:</label>
+                {% if messages %} <!-- check if there are any messages -->
+                    {% for message in messages %} <!-- loop through the messages -->
+                        {% if message.extra_tags == 'title' %}
+                        <span class="error text-danger small">{{ message }}</span> <!-- display each message in a paragraph tag -->
+                        {% endif %}
+                    {% endfor %}
+                {% endif %}
+                    <input type="text" name="title" class="form-control">
+
+
+                <label for="name_input">Description:</label>
+                {% if messages %} <!-- check if there are any messages -->
+                    {% for message in messages %} <!-- loop through the messages -->
+                        {% if message.extra_tags == 'desc' %}
+                        <span class="error text-danger small">{{ message }}</span> <!-- display each message in a paragraph tag -->
+                        {% endif %}
+                    {% endfor %}
+                {% endif %}
+                <textarea type="text" class="form-control" id="desc" placeholder="Please provide a short summary" name="desc" rows="5"></textarea>
+
+                <input type="submit" class="btn btn-info mt-3 text-dark" value="Add to Books">
+                </div>
+            </form>
+        </div> <!-- end of left side / add book -->
+        
+    <!-- Books Section -->
+                
+        <div class="col border border-info shadow p-3 ml-2 mb-2">
+        <h1 id="main_title" class="shadow p-3 bg-white rounded"> All Books </h1>
+            <div id="scroll">
+        {% for book in all_books %}
+            <div id="book_info" class="col border border-info shadow p-3 mr-2 mb-2">
+                
+                <a href="/books/{{ book.id }}" class="display-3 btn text-info btn-dark">{{ book.title }}</a>
+                <p class="text-info">(added by {{ book.uploaded_by.first_name }} {{ book.uploaded_by.last_name }})</p>
+                    
+            </div>
+        {% endfor %}
+            </div>
+         <!-- end of right side -->
+        </div>
+    </div><!-- end of rows -->
+    </div> <!-- end of container --> 
+</body>
+</html>

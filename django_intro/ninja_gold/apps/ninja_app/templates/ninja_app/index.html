@@ -1,0 +1,90 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'ninja_app/css/bootstrap.css'%}">
+    <title>Ninja Gold</title>
+</head>
+<body>
+    <div class="container">
+
+        <h2>Your Gold: ${{ request.session.gold_amount }}</h2>
+
+        
+        <div class="row shadow p-3 mb-5 bg-white text-center">
+            
+                <div class="col added shadow-sm p-3 mb-5 bg-light rounded mr-2 ml-2"> <!-- Farm -->
+                    <form action="/process_money" method='POST'>
+                        {% csrf_token %}
+                        <input type="hidden" name="location" value="farm">
+
+                        <h1>Farm</h1>
+                        <h6 class="mb-2 text-info">Earns 10-20 Gold</h6>
+                    
+                        <input type="submit" class="btn btn-warning" value="Cha-Ching!">
+                    </form>
+                </div>
+                
+
+                <div class="col added shadow-sm p-3 mb-5 bg-light rounded mr-2 ml-2"> <!-- Cave -->
+                    <form action="/process_money" method='POST'>
+                        {% csrf_token %}
+                        <input type="hidden" name="location" value="cave">
+
+                        <h1>Cave</h1>
+                        <h6 class="mb-2 text-info">Earns 5-10 Gold</h6>
+                    
+                        <input type="submit" class="btn btn-warning" value="Cha-Ching!">
+                    </form>
+                </div>
+                
+
+                
+                <div class="col added shadow-sm p-3 mb-5 bg-light rounded mr-2 ml-2"> <!-- House -->
+                    <form action="/process_money" method='POST'>
+                        {% csrf_token %}
+                        <input type="hidden" name="location" value="home">
+
+                        <h1>Home</h1>
+                        <h6 class="mb-2 text-info">Earns 2-5 Gold</h6>
+                    
+                        <input type="submit" class="btn btn-warning" value="Cha-Ching!">
+                    </form>
+                </div>
+                
+                
+                <div class="col added shadow-sm p-3 mb-5 bg-light rounded mr-2 ml-2"> <!-- Casino -->
+                    <form action="/process_money" method='POST'>
+                        {% csrf_token %}
+                        <input type="hidden" name="location" value="casino">
+                        
+                        <h1>Casino</h1>
+                        <h6 class="mb-2 text-info">Earns/Takes 0-50 Gold</h6>
+                    
+                        <input type="submit" class="btn btn-warning" value="Cha-Ching!">
+                    </form>
+                </div>
+                
+        </div> <!-- end of 'row' -->
+
+        <div class="shadow p-3 mb-5 bg-white text-center">
+            <h1>Activity:</h1>
+
+            {% csrf_token %}
+
+            <p class="text-info">See what you're earning here!</br></p>
+               
+            {{ request.session.activity|safe }}
+                
+            <a href="/clear" class="btn btn-warning mt-5">Clear</a>
+        </div>
+
+    </div> <!-- end of container -->
+    
+</body>
+</html>

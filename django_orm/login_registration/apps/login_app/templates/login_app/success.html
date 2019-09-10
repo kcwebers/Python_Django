@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'login_app/css/bootstrap.css'%}">
+
+    <title>Login & Register</title>
+</head>
+<body>
+    <div class="container">
+        <a href="/logout" class="btn btn-danger float-right">Log Out</a>
+        <h1> Welcome  {{ request.session.first_name }} !</h1>
+
+        {% if messages %} <!-- check if there are any messages -->
+            {% for message in messages %} <!-- loop through the messages -->
+                {% if message.extra_tags == 'success' %}
+                <span class="error text-success small">{{ message }}</span> <!-- display each message in a paragraph tag -->
+                {% endif %}
+            {% endfor %}
+        {% endif %}
+
+    </div> <!-- end of container --> 
+</body>
+</html>

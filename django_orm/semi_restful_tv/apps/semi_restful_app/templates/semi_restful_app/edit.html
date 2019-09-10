@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'semi_restful_app/css/bootstrap.css'%}">
+
+    <title>Semi Restful</title>
+</head>
+<body>
+    <div class="container">
+    <a href="/shows" class="btn btn-info float-right mt-4 mr-4">Back to List</a>
+    <h1 id="main_title" class="shadow p-3 mb-5 bg-white rounded">Edit "{{ show_info.title }}"</h1>
+        
+        <form action="/shows/{{ show_info.id }}/update" method="POST">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="title">Title:
+                    {% if messages %} <!-- check if there are any messages -->
+                        {% for message in messages %} <!-- loop through the messages -->
+                            {% if message.extra_tags == 'title' %}
+                            <span class="error text-danger small">{{ message }}</span> <!-- display each message in a paragraph tag -->
+                            {% endif %}
+                        {% endfor %}
+                    {% endif %}
+                </label>
+                <input type="text" class="form-control" id="title" value="{{ show_info.title }}" name="title">
+            </div>
+
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="network">Network:
+                        {% if messages %} <!-- check if there are any messages -->
+                            {% for message in messages %} <!-- loop through the messages -->
+                                {% if message.extra_tags == 'network' %}
+                                <p class="error text-danger small">{{ message }}</p> <!-- display each message in a paragraph tag -->
+                                {% endif %}
+                            {% endfor -%}
+                        {% endif %}
+                    </label>
+                    <input type="text" class="form-control" id="network" value="{{ show_info.network }}" name="network">
+                </div>
+
+                <div class="form-group col-md-6">
+                    <label for="released">Date:
+                        {% if messages %} <!-- check if there are any messages -->
+                            {% for message in messages %} <!-- loop through the messages -->
+                                {% if message.extra_tags == 'released' %}
+                                <p class="error text-danger small">{{ message }}</p> <!-- display each message in a paragraph tag -->
+                                {% endif %}
+                            {% endfor %}
+                        {% endif %}
+                    </label>
+                    <input type="date" class="form-control" id="released" name="released" value="{{ date_released }}">
+                </div>
+
+            </div>
+            <div class="form-group">
+                <label for="descript">Description (optional):
+                    {% if messages %} <!-- check if there are any messages -->
+                        {% for message in messages %} <!-- loop through the messages -->
+                            {% if message.extra_tags == 'descript' %}
+                            <p class="error text-danger small">{{ message }}</p> <!-- display each message in a paragraph tag -->
+                            {% endif %}
+                        {% endfor %}
+                    {% endif %}
+                </label>
+                <textarea type="text" class="form-control input-lg" id="descript" name="descript" rows="5">{{ show_info.desc }}</textarea>
+            </div>
+
+            <input type="submit" class="btn btn-info" value="Update"> |
+            <a href="/shows/{{ show_info.id }}" class="btn btn-info">Go to Show</a>
+        </form>
+
+    </div> <!-- end of container -->
+</body>
+</html>

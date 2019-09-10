@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Time Display</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'app_name/css/bootstrap.css'%}">
+
+</head>
+<body id="bg">
+    <div class="container">
+        <p class="display-5 m-5"> The crrent time and date: </p>
+        <p class="display-1 text-danger m-5">{{ time }}</p>
+    </div>   
+</body>
+</html>

@@ -1,0 +1,643 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1671\cocoasubrtf500
+{\fonttbl\f0\fnil\fcharset0 Menlo-Regular;\f1\fnil\fcharset0 Menlo-Bold;}
+{\colortbl;\red255\green255\blue255;\red0\green0\blue0;\red56\green185\blue199;\red57\green192\blue38;
+\red57\green164\blue40;\red55\green239\blue32;\red63\green151\blue253;\red209\green113\blue37;\red202\green51\blue35;
+\red86\green32\blue244;\red184\green51\blue37;\red252\green50\blue32;\red212\green34\blue255;}
+{\*\expandedcolortbl;;\csgray\c0;\cssrgb\c25544\c77008\c82022;\cssrgb\c25704\c77963\c19556;
+\cssrgb\c26425\c68732\c20500;\cssrgb\c22317\c93015\c16432;\cssrgb\c29888\c66838\c99559;\cssrgb\c85991\c52029\c18734;\cssrgb\c83898\c28665\c18024;
+\cssrgb\c41680\c25960\c96645;\cssrgb\c77738\c28163\c18923;\cssrgb\c100000\c29541\c16201;\cssrgb\c87269\c29650\c100000;}
+\margl1440\margr1440\vieww19060\viewh12640\viewkind0
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\partightenfactor0
+
+\f0\fs22 \cf2 \CocoaLigature0 (djangoPy3Env) Kaysees-MacBook-Air:books_authors_proj kaysee$ python3 manage.py makemigrations\
+You are trying to add a non-nullable field 'notes' to author without a default; we can't do that (the database needs something to populate existing rows).\
+Please select a fix:\
+ 1) Provide a one-off default now (will be set on all existing rows with a null value for this column)\
+ 2) Quit, and let me add a default in models.py\
+Select an option: 1\
+Please enter the default value now, as valid Python\
+The datetime and django.utils.timezone modules are available, so you can do e.g. timezone.now\
+Type 'exit' to exit this prompt\
+>>> "no notes added"\
+
+\f1\b \cf3 Migrations for 'books_authors_app':
+\f0\b0 \cf2 \
+  
+\f1\b apps/books_authors_app/migrations/0002_author_notes.py
+\f0\b0 :\
+    - Add field notes to author\
+(djangoPy3Env) Kaysees-MacBook-Air:books_authors_proj kaysee$ python3 manage.py migrate\
+
+\f1\b \cf3 Operations to perform:
+\f0\b0 \cf2 \
+
+\f1\b   Apply all migrations: 
+\f0\b0 admin, auth, books_authors_app, contenttypes, sessions\
+
+\f1\b \cf3 Running migrations:
+\f0\b0 \cf2 \
+  Rendering model states...
+\f1\b \cf4  DONE
+\f0\b0 \cf2 \
+  Applying books_authors_app.0002_author_notes...
+\f1\b \cf4  OK
+\f0\b0 \cf2 \
+(djangoPy3Env) Kaysees-MacBook-Air:books_authors_proj kaysee$ python3 manage.py shell\
+Python 3.7.3 (default, Mar 27 2019, 09:23:15) \
+Type 'copyright', 'credits' or 'license' for more information\
+IPython 7.5.0 -- An enhanced Interactive Python. Type '?' for help.\
+\
+\cf5 In [
+\f1\b \cf6 1
+\f0\b0 \cf5 ]: 
+\f1\b from
+\f0\b0 \cf2  
+\f1\b \cf7 apps.books_authors_app.models
+\f0\b0 \cf2  
+\f1\b \cf5 import
+\f0\b0 \cf2  *                                               \
+\
+\cf5 In [
+\f1\b \cf6 2
+\f0\b0 \cf5 ]: \cf2 my_book = Book.objects.get(\cf5 id\cf2 =\cf5 1\cf2 )                                                          \
+\
+\cf5 In [
+\f1\b \cf6 3
+\f0\b0 \cf5 ]: print\cf2 (my_book)                                                                            \
+Book object\
+\
+\cf5 In [
+\f1\b \cf6 4
+\f0\b0 \cf5 ]: print\cf2 (my_book.title)                                                                      \
+C Sharp\
+\
+\cf5 In [
+\f1\b \cf6 5
+\f0\b0 \cf5 ]: \cf2 my_book.title = \cf8 "C#"\cf2                                                                       \
+\
+\cf5 In [
+\f1\b \cf6 6
+\f0\b0 \cf5 ]: \cf2 my_book.save()                                                                            \
+\
+\cf5 In [
+\f1\b \cf6 7
+\f0\b0 \cf5 ]: print\cf2 (my_book.title)                                                                      \
+C#\
+\
+\cf5 In [
+\f1\b \cf6 8
+\f0\b0 \cf5 ]: \cf2 my_author = Author.objects.get(\cf5 id\cf2 =\cf5 4\cf2 )                                                      \
+\
+\cf5 In [
+\f1\b \cf6 9
+\f0\b0 \cf5 ]: print\cf2 (my_author.first_name)                                                               \
+William\
+\
+\cf5 In [
+\f1\b \cf6 10
+\f0\b0 \cf5 ]: \cf2 my_author.first_name = \cf8 "Bill"\cf2                                                             \
+\
+\cf5 In [
+\f1\b \cf6 11
+\f0\b0 \cf5 ]: \cf2 my_author.save()                                                                         \
+\
+\cf5 In [
+\f1\b \cf6 12
+\f0\b0 \cf5 ]: print\cf2 (my_author.first_name)                                                              \
+Bill\
+\
+\cf5 In [
+\f1\b \cf6 13
+\f0\b0 \cf5 ]: \cf2 my_auth = Author.objects.get(\cf5 id\cf2 =\cf5 1\cf2 )                                                       \
+\
+\cf5 In [
+\f1\b \cf6 14
+\f0\b0 \cf5 ]: \cf2 add_book = Book.objects.get(\cf5 id\cf2 =\cf5 1\cf2 )                                                        \
+\
+\cf5 In [
+\f1\b \cf6 15
+\f0\b0 \cf5 ]: print\cf2 (add_book.title)                                                                    \
+C#\
+\
+\cf5 In [
+\f1\b \cf6 16
+\f0\b0 \cf5 ]: \cf2 my_auth.books.add(add_book)                                                              \
+\
+\cf5 In [
+\f1\b \cf6 17
+\f0\b0 \cf5 ]: print\cf2 (my_auth.books)                                                                     \
+books_authors_app.Book.None\
+\
+\cf5 In [
+\f1\b \cf6 18
+\f0\b0 \cf5 ]: print\cf2 (my_auth.books.title)                                                               \
+\cf9 ---------------------------------------------------------------------------\cf2 \
+\cf9 AttributeError\cf2                             Traceback (most recent call last)\
+\cf4 <ipython-input-18-4a049dc0605e>\cf2  in \cf3 <module>\cf2 \
+\cf4 ----> 1\cf9  \cf2 print\cf10 (\cf2 my_auth\cf10 .\cf2 books\cf10 .\cf2 title\cf10 )\cf2 \
+\
+\cf9 AttributeError\cf2 : 'ManyRelatedManager' object has no attribute 'title'\
+\
+\cf5 In [
+\f1\b \cf6 19
+\f0\b0 \cf5 ]: print\cf2 (my_auth.first_name)                                                                \
+Jane\
+\
+\cf5 In [
+\f1\b \cf6 20
+\f0\b0 \cf5 ]: print\cf2 (add_book.title)                                                                    \
+C#\
+\
+\cf5 In [
+\f1\b \cf6 21
+\f0\b0 \cf5 ]: print\cf2 (my_auth.books.all())                                                               \
+<QuerySet [<Book: Book object>]>\
+\
+\cf5 In [
+\f1\b \cf6 22
+\f0\b0 \cf5 ]: \cf2 add_book = Book.objects.get(\cf5 id\cf2 =\cf5 2\cf2 )                                                        \
+\
+\cf5 In [
+\f1\b \cf6 23
+\f0\b0 \cf5 ]: \cf2 my_auth.books.add(add_book)                                                              \
+\
+\cf5 In [
+\f1\b \cf6 24
+\f0\b0 \cf5 ]: print\cf2                                                                                     \
+\cf11 Out[
+\f1\b \cf12 24
+\f0\b0 \cf11 ]: \cf2 <function print>\
+\
+\cf5 In [
+\f1\b \cf6 25
+\f0\b0 \cf5 ]: print\cf2 (my_auth.books.all())                                                               \
+<QuerySet [<Book: Book object>, <Book: Book object>]>\
+\
+\cf5 In [
+\f1\b \cf6 26
+\f0\b0 \cf5 ]: \cf2 my_auth = Author.objects.get(\cf5 id\cf2 =\cf5 2\cf2 )                                                       \
+\
+\cf5 In [
+\f1\b \cf6 27
+\f0\b0 \cf5 ]: print\cf2 (my_auth.first_name)                                                                \
+Emily\
+\
+\cf5 In [
+\f1\b \cf6 28
+\f0\b0 \cf5 ]: \cf2 add_books = Book.objects.exclude(\cf5 id\cf2 =\cf5 5\cf2 , \cf5 id\cf2 =\cf5 4\cf2 )                                             \
+\cf3   File \cf4 "<ipython-input-28-7bfbe62f73d1>"\cf3 , line \cf4 1\cf2 \
+\cf9     add_books = Book.objects.exclude(id=5, id=4)\cf2 \
+                                          ^\
+\cf9 SyntaxError:\cf2  keyword argument repeated\
+\
+\
+\cf5 In [
+\f1\b \cf6 29
+\f0\b0 \cf5 ]: \cf2 add_books = Book.objects.exclude(\cf5 id\cf2 =\cf5 5\cf2  
+\f1\b \cf13 and
+\f0\b0 \cf2  \cf5 id\cf2 =\cf5 4\cf2 )                                          \
+\cf3   File \cf4 "<ipython-input-29-0e1226b6bb83>"\cf3 , line \cf4 1\cf2 \
+\cf9     add_books = Book.objects.exclude(id=5 and id=4)\cf2 \
+                                                ^\
+\cf9 SyntaxError:\cf2  invalid syntax\
+\
+\
+\cf5 In [
+\f1\b \cf6 30
+\f0\b0 \cf5 ]: \cf2 add_books = Book.objects.exclude(\cf5 id\cf2 =\cf5 5\cf2  
+\f1\b \cf13 and
+\f0\b0 \cf2  \cf5 4\cf2 )                                             \
+\
+\cf5 In [
+\f1\b \cf6 31
+\f0\b0 \cf5 ]: print\cf2 (add_books)                                                                         \
+<QuerySet [<Book: Book object>, <Book: Book object>, <Book: Book object>, <Book: Book object>]>\
+\
+\cf5 In [
+\f1\b \cf6 32
+\f0\b0 \cf5 ]: \cf2 add_books = Book.objects.exclude(\cf5 id\cf2  >= \cf5 4\cf2 )                                                \
+\cf9 ---------------------------------------------------------------------------\cf2 \
+\cf9 TypeError\cf2                                  Traceback (most recent call last)\
+\cf4 <ipython-input-32-20ed77287c5e>\cf2  in \cf3 <module>\cf2 \
+\cf4 ----> 1\cf9  \cf2 add_books \cf10 =\cf2  Book\cf10 .\cf2 objects\cf10 .\cf2 exclude\cf10 (\cf2 id \cf10 >=\cf2  \cf3 4\cf10 )\cf2 \
+\
+\cf9 TypeError\cf2 : '>=' not supported between instances of 'builtin_function_or_method' and 'int'\
+\
+\cf5 In [
+\f1\b \cf6 33
+\f0\b0 \cf5 ]: \cf2 add_books = Book.objects.exclude(\cf5 id\cf2 =\cf5 4\cf2 ).exclude(\cf5 id\cf2 =\cf5 5\cf2 )                                     \
+\
+\cf5 In [
+\f1\b \cf6 34
+\f0\b0 \cf5 ]: print\cf2 (add_books)                                                                         \
+<QuerySet [<Book: Book object>, <Book: Book object>, <Book: Book object>]>\
+\
+\cf5 In [
+\f1\b \cf6 35
+\f0\b0 \cf5 ]: print\cf2 (my_auth)                                                                           \
+Author object\
+\
+\cf5 In [
+\f1\b \cf6 36
+\f0\b0 \cf5 ]: print\cf2 (my_auth.first_name)                                                                \
+Emily\
+\
+\cf5 In [
+\f1\b \cf6 37
+\f0\b0 \cf5 ]: \cf2 my_auth.books.add(add_books)                                                             \
+\cf9 ---------------------------------------------------------------------------\cf2 \
+\cf9 TypeError\cf2                                  Traceback (most recent call last)\
+\cf4 <ipython-input-37-a4644c503d22>\cf2  in \cf3 <module>\cf2 \
+\cf4 ----> 1\cf9  \cf2 my_auth\cf10 .\cf2 books\cf10 .\cf2 add\cf10 (\cf2 add_books\cf10 )\cf2 \
+\
+\cf4 ~/CodingDojo/python_stack/my_environments/djangoPy3Env/lib/python3.7/site-packages/django/db/models/fields/related_descriptors.py\cf2  in \cf3 add\cf10 (self, *objs)\cf2 \
+
+\f1\b \cf4     879
+\f0\b0 \cf2              db \cf10 =\cf2  router\cf10 .\cf2 db_for_write\cf10 (\cf2 self\cf10 .\cf2 through\cf10 ,\cf2  instance\cf10 =\cf2 self\cf10 .\cf2 instance\cf10 )\cf2 \
+
+\f1\b \cf4     880
+\f0\b0 \cf2              \cf4 with\cf2  transaction\cf10 .\cf2 atomic\cf10 (\cf2 using\cf10 =\cf2 db\cf10 ,\cf2  savepoint\cf10 =\cf4 False\cf10 ):\cf2 \
+\cf4 --> 881\cf9                  \cf2 self\cf10 .\cf2 _add_items\cf10 (\cf2 self\cf10 .\cf2 source_field_name\cf10 ,\cf2  self\cf10 .\cf2 target_field_name\cf10 ,\cf2  \cf10 *\cf2 objs\cf10 )\cf2 \
+
+\f1\b \cf4     882
+\f0\b0 \cf2  \
+
+\f1\b \cf4     883
+\f0\b0 \cf2                  \cf9 # If this is a symmetrical m2m relation to self, add the mirror entry in the m2m table\cf2 \
+\
+\cf4 ~/CodingDojo/python_stack/my_environments/djangoPy3Env/lib/python3.7/site-packages/django/db/models/fields/related_descriptors.py\cf2  in \cf3 _add_items\cf10 (self, source_field_name, target_field_name, *objs)\cf2 \
+
+\f1\b \cf4    1026
+\f0\b0 \cf2                          .filter(**\{\
+
+\f1\b \cf4    1027
+\f0\b0 \cf2                              source_field_name\cf10 :\cf2  self\cf10 .\cf2 related_val\cf10 [\cf3 0\cf10 ],\cf2 \
+\cf4 -> 1028\cf9                              \cf10 '%s__in'\cf2  \cf10 %\cf2  target_field_name\cf10 :\cf2  new_ids\cf10 ,\cf2 \
+
+\f1\b \cf4    1029
+\f0\b0 \cf2                          \}))\
+
+\f1\b \cf4    1030
+\f0\b0 \cf2                  new_ids \cf10 =\cf2  new_ids \cf10 -\cf2  set\cf10 (\cf2 vals\cf10 )\cf2 \
+\
+\cf4 ~/CodingDojo/python_stack/my_environments/djangoPy3Env/lib/python3.7/site-packages/django/db/models/query.py\cf2  in \cf3 filter\cf10 (self, *args, **kwargs)\cf2 \
+
+\f1\b \cf4     792
+\f0\b0 \cf2          set\cf10 .\cf2 \
+
+\f1\b \cf4     793
+\f0\b0 \cf2          """\
+\cf4 --> 794\cf9          \cf4 return\cf2  self\cf10 .\cf2 _filter_or_exclude\cf10 (\cf4 False\cf10 ,\cf2  \cf10 *\cf2 args\cf10 ,\cf2  \cf10 **\cf2 kwargs\cf10 )\cf2 \
+
+\f1\b \cf4     795
+\f0\b0 \cf2  \
+
+\f1\b \cf4     796
+\f0\b0 \cf2      \cf4 def\cf2  exclude\cf10 (\cf2 self\cf10 ,\cf2  \cf10 *\cf2 args\cf10 ,\cf2  \cf10 **\cf2 kwargs\cf10 ):\cf2 \
+\
+\cf4 ~/CodingDojo/python_stack/my_environments/djangoPy3Env/lib/python3.7/site-packages/django/db/models/query.py\cf2  in \cf3 _filter_or_exclude\cf10 (self, negate, *args, **kwargs)\cf2 \
+
+\f1\b \cf4     810
+\f0\b0 \cf2              clone\cf10 .\cf2 query\cf10 .\cf2 add_q\cf10 (~\cf2 Q\cf10 (*\cf2 args\cf10 ,\cf2  \cf10 **\cf2 kwargs\cf10 ))\cf2 \
+
+\f1\b \cf4     811
+\f0\b0 \cf2          \cf4 else\cf10 :\cf2 \
+\cf4 --> 812\cf9              \cf2 clone\cf10 .\cf2 query\cf10 .\cf2 add_q\cf10 (\cf2 Q\cf10 (*\cf2 args\cf10 ,\cf2  \cf10 **\cf2 kwargs\cf10 ))\cf2 \
+
+\f1\b \cf4     813
+\f0\b0 \cf2          \cf4 return\cf2  clone\
+
+\f1\b \cf4     814
+\f0\b0 \cf2  \
+\
+\cf4 ~/CodingDojo/python_stack/my_environments/djangoPy3Env/lib/python3.7/site-packages/django/db/models/sql/query.py\cf2  in \cf3 add_q\cf10 (self, q_object)\cf2 \
+
+\f1\b \cf4    1225
+\f0\b0 \cf2          existing_inner = set(\
+
+\f1\b \cf4    1226
+\f0\b0 \cf2              (a for a in self.alias_map if self.alias_map[a].join_type == INNER))\
+\cf4 -> 1227\cf9          \cf2 clause\cf10 ,\cf2  _ \cf10 =\cf2  self\cf10 .\cf2 _add_q\cf10 (\cf2 q_object\cf10 ,\cf2  self\cf10 .\cf2 used_aliases\cf10 )\cf2 \
+
+\f1\b \cf4    1228
+\f0\b0 \cf2          \cf4 if\cf2  clause\cf10 :\cf2 \
+
+\f1\b \cf4    1229
+\f0\b0 \cf2              self\cf10 .\cf2 where\cf10 .\cf2 add\cf10 (\cf2 clause\cf10 ,\cf2  AND\cf10 )\cf2 \
+\
+\cf4 ~/CodingDojo/python_stack/my_environments/djangoPy3Env/lib/python3.7/site-packages/django/db/models/sql/query.py\cf2  in \cf3 _add_q\cf10 (self, q_object, used_aliases, branch_negated, current_negated, allow_joins, split_subq)\cf2 \
+
+\f1\b \cf4    1251
+\f0\b0 \cf2                      child\cf10 ,\cf2  can_reuse\cf10 =\cf2 used_aliases\cf10 ,\cf2  branch_negated\cf10 =\cf2 branch_negated\cf10 ,\cf2 \
+
+\f1\b \cf4    1252
+\f0\b0 \cf2                      current_negated\cf10 =\cf2 current_negated\cf10 ,\cf2  connector\cf10 =\cf2 connector\cf10 ,\cf2 \
+\cf4 -> 1253\cf9                      \cf2 allow_joins\cf10 =\cf2 allow_joins\cf10 ,\cf2  split_subq\cf10 =\cf2 split_subq\cf10 ,\cf2 \
+
+\f1\b \cf4    1254
+\f0\b0 \cf2                  )\
+
+\f1\b \cf4    1255
+\f0\b0 \cf2                  joinpromoter\cf10 .\cf2 add_votes\cf10 (\cf2 needed_inner\cf10 )\cf2 \
+\
+\cf4 ~/CodingDojo/python_stack/my_environments/djangoPy3Env/lib/python3.7/site-packages/django/db/models/sql/query.py\cf2  in \cf3 build_filter\cf10 (self, filter_expr, branch_negated, current_negated, can_reuse, connector, allow_joins, split_subq)\cf2 \
+
+\f1\b \cf4    1181
+\f0\b0 \cf2              \cf4 else\cf10 :\cf2 \
+
+\f1\b \cf4    1182
+\f0\b0 \cf2                  lhs \cf10 =\cf2  MultiColSource\cf10 (\cf2 alias\cf10 ,\cf2  targets\cf10 ,\cf2  sources\cf10 ,\cf2  field\cf10 )\cf2 \
+\cf4 -> 1183\cf9              \cf2 condition \cf10 =\cf2  lookup_class\cf10 (\cf2 lhs\cf10 ,\cf2  value\cf10 )\cf2 \
+
+\f1\b \cf4    1184
+\f0\b0 \cf2              lookup_type \cf10 =\cf2  lookup_class\cf10 .\cf2 lookup_name\
+
+\f1\b \cf4    1185
+\f0\b0 \cf2          \cf4 else\cf10 :\cf2 \
+\
+\cf4 ~/CodingDojo/python_stack/my_environments/djangoPy3Env/lib/python3.7/site-packages/django/db/models/lookups.py\cf2  in \cf3 __init__\cf10 (self, lhs, rhs)\cf2 \
+
+\f1\b \cf4      17
+\f0\b0 \cf2      \cf4 def\cf2  __init__\cf10 (\cf2 self\cf10 ,\cf2  lhs\cf10 ,\cf2  rhs\cf10 ):\cf2 \
+
+\f1\b \cf4      18
+\f0\b0 \cf2          self\cf10 .\cf2 lhs\cf10 ,\cf2  self\cf10 .\cf2 rhs \cf10 =\cf2  lhs\cf10 ,\cf2  rhs\
+\cf4 ---> 19\cf9          \cf2 self\cf10 .\cf2 rhs \cf10 =\cf2  self\cf10 .\cf2 get_prep_lookup\cf10 ()\cf2 \
+
+\f1\b \cf4      20
+\f0\b0 \cf2          \cf4 if\cf2  hasattr\cf10 (\cf2 self\cf10 .\cf2 lhs\cf10 ,\cf2  \cf10 'get_bilateral_transforms'):\cf2 \
+
+\f1\b \cf4      21
+\f0\b0 \cf2              bilateral_transforms \cf10 =\cf2  self\cf10 .\cf2 lhs\cf10 .\cf2 get_bilateral_transforms\cf10 ()\cf2 \
+\
+\cf4 ~/CodingDojo/python_stack/my_environments/djangoPy3Env/lib/python3.7/site-packages/django/db/models/fields/related_lookups.py\cf2  in \cf3 get_prep_lookup\cf10 (self)\cf2 \
+
+\f1\b \cf4      54
+\f0\b0 \cf2                  \cf9 # only one as we don't get to the direct value branch otherwise.\cf2 \
+
+\f1\b \cf4      55
+\f0\b0 \cf2                  target_field \cf10 =\cf2  self\cf10 .\cf2 lhs\cf10 .\cf2 output_field\cf10 .\cf2 get_path_info\cf10 ()[-\cf3 1\cf10 ].\cf2 target_fields\cf10 [-\cf3 1\cf10 ]\cf2 \
+\cf4 ---> 56\cf9                  \cf2 self\cf10 .\cf2 rhs \cf10 =\cf2  \cf10 [\cf2 target_field\cf10 .\cf2 get_prep_value\cf10 (\cf2 v\cf10 )\cf2  \cf4 for\cf2  v \cf4 in\cf2  self\cf10 .\cf2 rhs\cf10 ]\cf2 \
+
+\f1\b \cf4      57
+\f0\b0 \cf2          \cf4 return\cf2  super\cf10 (\cf2 RelatedIn\cf10 ,\cf2  self\cf10 ).\cf2 get_prep_lookup\cf10 ()\cf2 \
+
+\f1\b \cf4      58
+\f0\b0 \cf2  \
+\
+\cf4 ~/CodingDojo/python_stack/my_environments/djangoPy3Env/lib/python3.7/site-packages/django/db/models/fields/related_lookups.py\cf2  in \cf3 <listcomp>\cf10 (.0)\cf2 \
+
+\f1\b \cf4      54
+\f0\b0 \cf2                  \cf9 # only one as we don't get to the direct value branch otherwise.\cf2 \
+
+\f1\b \cf4      55
+\f0\b0 \cf2                  target_field \cf10 =\cf2  self\cf10 .\cf2 lhs\cf10 .\cf2 output_field\cf10 .\cf2 get_path_info\cf10 ()[-\cf3 1\cf10 ].\cf2 target_fields\cf10 [-\cf3 1\cf10 ]\cf2 \
+\cf4 ---> 56\cf9                  \cf2 self\cf10 .\cf2 rhs \cf10 =\cf2  \cf10 [\cf2 target_field\cf10 .\cf2 get_prep_value\cf10 (\cf2 v\cf10 )\cf2  \cf4 for\cf2  v \cf4 in\cf2  self\cf10 .\cf2 rhs\cf10 ]\cf2 \
+
+\f1\b \cf4      57
+\f0\b0 \cf2          \cf4 return\cf2  super\cf10 (\cf2 RelatedIn\cf10 ,\cf2  self\cf10 ).\cf2 get_prep_lookup\cf10 ()\cf2 \
+
+\f1\b \cf4      58
+\f0\b0 \cf2  \
+\
+\cf4 ~/CodingDojo/python_stack/my_environments/djangoPy3Env/lib/python3.7/site-packages/django/db/models/fields/__init__.py\cf2  in \cf3 get_prep_value\cf10 (self, value)\cf2 \
+
+\f1\b \cf4     944
+\f0\b0 \cf2          \cf4 if\cf2  value \cf4 is\cf2  \cf4 None\cf10 :\cf2 \
+
+\f1\b \cf4     945
+\f0\b0 \cf2              \cf4 return\cf2  \cf4 None\cf2 \
+\cf4 --> 946\cf9          \cf4 return\cf2  int\cf10 (\cf2 value\cf10 )\cf2 \
+
+\f1\b \cf4     947
+\f0\b0 \cf2  \
+
+\f1\b \cf4     948
+\f0\b0 \cf2      \cf4 def\cf2  contribute_to_class\cf10 (\cf2 self\cf10 ,\cf2  cls\cf10 ,\cf2  name\cf10 ,\cf2  \cf10 **\cf2 kwargs\cf10 ):\cf2 \
+\
+\cf9 TypeError\cf2 : int() argument must be a string, a bytes-like object or a number, not 'QuerySet'\
+\
+\cf5 In [
+\f1\b \cf6 38
+\f0\b0 \cf5 ]: \cf2 add_book = Book.objects.get(\cf5 id\cf2 =\cf5 1\cf2 )                                                        \
+\
+\cf5 In [
+\f1\b \cf6 39
+\f0\b0 \cf5 ]: \cf2 pritn(add_book.title)                                                                    \
+\cf9 ---------------------------------------------------------------------------\cf2 \
+\cf9 NameError\cf2                                  Traceback (most recent call last)\
+\cf4 <ipython-input-39-701705f56da3>\cf2  in \cf3 <module>\cf2 \
+\cf4 ----> 1\cf9  \cf2 pritn\cf10 (\cf2 add_book\cf10 .\cf2 title\cf10 )\cf2 \
+\
+\cf9 NameError\cf2 : name 'pritn' is not defined\
+\
+\cf5 In [
+\f1\b \cf6 40
+\f0\b0 \cf5 ]: print\cf2 (add_book.title)                                                                    \
+C#\
+\
+\cf5 In [
+\f1\b \cf6 41
+\f0\b0 \cf5 ]: \cf2 my_auth.books.add(add_book)                                                              \
+\
+\cf5 In [
+\f1\b \cf6 42
+\f0\b0 \cf5 ]: \cf2 add_book =  Book.objects.get(\cf5 id\cf2 =\cf5 2\cf2 )                                                       \
+\
+\cf5 In [
+\f1\b \cf6 43
+\f0\b0 \cf5 ]: \cf2 my_auth.books.add(add_book)                                                              \
+\
+\cf5 In [
+\f1\b \cf6 44
+\f0\b0 \cf5 ]: \cf2 add_book =  Book.objects.get(\cf5 id\cf2 =\cf5 3\cf2 )                                                       \
+\
+\cf5 In [
+\f1\b \cf6 45
+\f0\b0 \cf5 ]: \cf2 my_auth.books.add(add_book)                                                              \
+\
+\cf5 In [
+\f1\b \cf6 46
+\f0\b0 \cf5 ]: print\cf2 (my_auth.books.title)                                                               \
+\cf9 ---------------------------------------------------------------------------\cf2 \
+\cf9 AttributeError\cf2                             Traceback (most recent call last)\
+\cf4 <ipython-input-46-4a049dc0605e>\cf2  in \cf3 <module>\cf2 \
+\cf4 ----> 1\cf9  \cf2 print\cf10 (\cf2 my_auth\cf10 .\cf2 books\cf10 .\cf2 title\cf10 )\cf2 \
+\
+\cf9 AttributeError\cf2 : 'ManyRelatedManager' object has no attribute 'title'\
+\
+\cf5 In [
+\f1\b \cf6 47
+\f0\b0 \cf5 ]: print\cf2 (my_auth.books)                                                                     \
+books_authors_app.Book.None\
+\
+\cf5 In [
+\f1\b \cf6 48
+\f0\b0 \cf5 ]: print\cf2 (my_auth.books.all())                                                               \
+<QuerySet [<Book: Book object>, <Book: Book object>, <Book: Book object>]>\
+\
+\cf5 In [
+\f1\b \cf6 49
+\f0\b0 \cf5 ]: \cf2 my_auth = Author.objects.get(\cf5 id\cf2 =\cf5 3\cf2 )                                                       \
+\
+\cf5 In [
+\f1\b \cf6 50
+\f0\b0 \cf5 ]: \cf2 my_book = Book.objects.get(\cf5 id\cf2 =\cf5 1\cf2 )                                                         \
+\
+\cf5 In [
+\f1\b \cf6 51
+\f0\b0 \cf5 ]: \cf2 my_auth.books.add(my_book)                                                               \
+\
+\cf5 In [
+\f1\b \cf6 52
+\f0\b0 \cf5 ]: \cf2 my_book = Book.objects.get(\cf5 id\cf2 =\cf5 2\cf2 )                                                         \
+\
+\cf5 In [
+\f1\b \cf6 53
+\f0\b0 \cf5 ]: \cf2 my_auth.book.add(my_book)                                                                \
+\cf9 ---------------------------------------------------------------------------\cf2 \
+\cf9 AttributeError\cf2                             Traceback (most recent call last)\
+\cf4 <ipython-input-53-58e44d43136d>\cf2  in \cf3 <module>\cf2 \
+\cf4 ----> 1\cf9  \cf2 my_auth\cf10 .\cf2 book\cf10 .\cf2 add\cf10 (\cf2 my_book\cf10 )\cf2 \
+\
+\cf9 AttributeError\cf2 : 'Author' object has no attribute 'book'\
+\
+\cf5 In [
+\f1\b \cf6 54
+\f0\b0 \cf5 ]: \cf2 my_auth.books.add(my_book)                                                               \
+\
+\cf5 In [
+\f1\b \cf6 55
+\f0\b0 \cf5 ]: \cf2 my_book = Book.objects.get(\cf5 id\cf2 =\cf5 3\cf2 )                                                         \
+\
+\cf5 In [
+\f1\b \cf6 56
+\f0\b0 \cf5 ]: \cf2 my_auth.books.add(my_book)                                                               \
+\
+\cf5 In [
+\f1\b \cf6 57
+\f0\b0 \cf5 ]: \cf2 my_book = Book.objects.get(\cf5 id\cf2 =\cf5 4\cf2 )                                                         \
+\
+\cf5 In [
+\f1\b \cf6 58
+\f0\b0 \cf5 ]: \cf2 my_auth.books.add(my_book)                                                               \
+\
+\cf5 In [
+\f1\b \cf6 59
+\f0\b0 \cf5 ]: \cf2 my_auth = Author.objects.get(\cf5 id\cf2 =\cf5 4\cf2 )                                                       \
+\
+\cf5 In [
+\f1\b \cf6 60
+\f0\b0 \cf5 ]: \cf2 my_book = Book.objects.get(\cf5 id\cf2 =\cf5 1\cf2 )                                                         \
+\
+\cf5 In [
+\f1\b \cf6 61
+\f0\b0 \cf5 ]: \cf2 my_auth.books.add(my_book)                                                               \
+\
+\cf5 In [
+\f1\b \cf6 62
+\f0\b0 \cf5 ]: \cf2 my_book = Book.objects.get(\cf5 id\cf2 =\cf5 2\cf2 )                                                         \
+\
+\cf5 In [
+\f1\b \cf6 63
+\f0\b0 \cf5 ]: \cf2 my_auth.books.add(my_book)                                                               \
+\
+\cf5 In [
+\f1\b \cf6 64
+\f0\b0 \cf5 ]: \cf2 my_book = Book.objects.get(\cf5 id\cf2 =\cf5 3\cf2 )                                                         \
+\
+\cf5 In [
+\f1\b \cf6 65
+\f0\b0 \cf5 ]: \cf2 my_auth.books.add(my_book)                                                               \
+\
+\cf5 In [
+\f1\b \cf6 66
+\f0\b0 \cf5 ]: \cf2 my_book = Book.objects.get(\cf5 id\cf2 =\cf5 4\cf2 )                                                         \
+\
+\cf5 In [
+\f1\b \cf6 67
+\f0\b0 \cf5 ]: \cf2 my_auth.books.add(my_book)                                                               \
+\
+\cf5 In [
+\f1\b \cf6 68
+\f0\b0 \cf5 ]: \cf2 my_book = Book.objects.get(\cf5 id\cf2 =\cf5 5\cf2 )                                                         \
+\
+\cf5 In [
+\f1\b \cf6 69
+\f0\b0 \cf5 ]: \cf2 my_auth.books.add(my_book)                                                               \
+\
+\cf5 In [
+\f1\b \cf6 70
+\f0\b0 \cf5 ]: print\cf2 (my_auth.books.all())                                                               \
+<QuerySet [<Book: Book object>, <Book: Book object>, <Book: Book object>, <Book: Book object>, <Book: Book object>]>\
+\
+\cf5 In [
+\f1\b \cf6 71
+\f0\b0 \cf5 ]: \cf2 book_look = Book.objects.get(\cf5 id\cf2 =\cf5 3\cf2 )                                                       \
+\
+\cf5 In [
+\f1\b \cf6 72
+\f0\b0 \cf5 ]: \cf2 book_look.authors.all().values()                                                         \
+\cf11 Out[
+\f1\b \cf12 72
+\f0\b0 \cf11 ]: \cf2 <QuerySet [\{'id': 2, 'first_name': 'Emily', 'last_name': 'Dickinson', 'notes': 'no notes added', 'created_at': datetime.datetime(2019, 6, 18, 20, 36, 47, 164499, tzinfo=<UTC>), 'updated_at': datetime.datetime(2019, 6, 18, 20, 36, 47, 164540, tzinfo=<UTC>)\}, \{'id': 3, 'first_name': 'Fyodor', 'last_name': 'Dostoevksy', 'notes': 'no notes added', 'created_at': datetime.datetime(2019, 6, 18, 20, 37, 44, 404161, tzinfo=<UTC>), 'updated_at': datetime.datetime(2019, 6, 18, 20, 37, 44, 404213, tzinfo=<UTC>)\}, \{'id': 4, 'first_name': 'Bill', 'last_name': 'Shakespeare', 'notes': 'no notes added', 'created_at': datetime.datetime(2019, 6, 18, 20, 38, 7, 340537, tzinfo=<UTC>), 'updated_at': datetime.datetime(2019, 6, 18, 20, 44, 2, 771029, tzinfo=<UTC>)\}]>\
+\
+\cf5 In [
+\f1\b \cf6 73
+\f0\b0 \cf5 ]: \cf2 bad_auth = Author.objects.get(\cf5 id\cf2 =\cf5 2\cf2 )                                                      \
+\
+\cf5 In [
+\f1\b \cf6 74
+\f0\b0 \cf5 ]: \cf2 book_look.authors.remove(bad_auth)                                                       \
+\
+\cf5 In [
+\f1\b \cf6 75
+\f0\b0 \cf5 ]: \cf2 book_look.authors.all().values()                                                         \
+\cf11 Out[
+\f1\b \cf12 75
+\f0\b0 \cf11 ]: \cf2 <QuerySet [\{'id': 3, 'first_name': 'Fyodor', 'last_name': 'Dostoevksy', 'notes': 'no notes added', 'created_at': datetime.datetime(2019, 6, 18, 20, 37, 44, 404161, tzinfo=<UTC>), 'updated_at': datetime.datetime(2019, 6, 18, 20, 37, 44, 404213, tzinfo=<UTC>)\}, \{'id': 4, 'first_name': 'Bill', 'last_name': 'Shakespeare', 'notes': 'no notes added', 'created_at': datetime.datetime(2019, 6, 18, 20, 38, 7, 340537, tzinfo=<UTC>), 'updated_at': datetime.datetime(2019, 6, 18, 20, 44, 2, 771029, tzinfo=<UTC>)\}]>\
+\
+\cf5 In [
+\f1\b \cf6 76
+\f0\b0 \cf5 ]: \cf2 my_book = Book.objects.get(\cf5 id\cf2 =\cf5 2\cf2 )                                                         \
+\
+\cf5 In [
+\f1\b \cf6 77
+\f0\b0 \cf5 ]: \cf2 new_auth = Author.objects.get(\cf5 id\cf2 =\cf5 5\cf2 )                                                      \
+\
+\cf5 In [
+\f1\b \cf6 78
+\f0\b0 \cf5 ]: \cf2 my_book.authors.add(new_auth)                                                            \
+\
+\cf5 In [
+\f1\b \cf6 79
+\f0\b0 \cf5 ]: \cf2 my_book.authors.all().values()                                                           \
+\cf11 Out[
+\f1\b \cf12 79
+\f0\b0 \cf11 ]: \cf2 <QuerySet [\{'id': 1, 'first_name': 'Jane', 'last_name': 'Austen', 'notes': 'no notes added', 'created_at': datetime.datetime(2019, 6, 18, 20, 36, 27, 724989, tzinfo=<UTC>), 'updated_at': datetime.datetime(2019, 6, 18, 20, 36, 27, 725028, tzinfo=<UTC>)\}, \{'id': 2, 'first_name': 'Emily', 'last_name': 'Dickinson', 'notes': 'no notes added', 'created_at': datetime.datetime(2019, 6, 18, 20, 36, 47, 164499, tzinfo=<UTC>), 'updated_at': datetime.datetime(2019, 6, 18, 20, 36, 47, 164540, tzinfo=<UTC>)\}, \{'id': 3, 'first_name': 'Fyodor', 'last_name': 'Dostoevksy', 'notes': 'no notes added', 'created_at': datetime.datetime(2019, 6, 18, 20, 37, 44, 404161, tzinfo=<UTC>), 'updated_at': datetime.datetime(2019, 6, 18, 20, 37, 44, 404213, tzinfo=<UTC>)\}, \{'id': 4, 'first_name': 'Bill', 'last_name': 'Shakespeare', 'notes': 'no notes added', 'created_at': datetime.datetime(2019, 6, 18, 20, 38, 7, 340537, tzinfo=<UTC>), 'updated_at': datetime.datetime(2019, 6, 18, 20, 44, 2, 771029, tzinfo=<UTC>)\}, \{'id': 5, 'first_name': 'Lau', 'last_name': 'Tzu', 'notes': 'no notes added', 'created_at': datetime.datetime(2019, 6, 18, 20, 38, 41, 561056, tzinfo=<UTC>), 'updated_at': datetime.datetime(2019, 6, 18, 20, 38, 41, 561162, tzinfo=<UTC>)\}]>\
+\
+\cf5 In [
+\f1\b \cf6 80
+\f0\b0 \cf5 ]: \cf2 my_auth = Author.objects.get(\cf5 id\cf2 =\cf5 3\cf2 )                                                       \
+\
+\cf5 In [
+\f1\b \cf6 81
+\f0\b0 \cf5 ]: \cf2 my_auth.books.all().values()                                                             \
+\cf11 Out[
+\f1\b \cf12 81
+\f0\b0 \cf11 ]: \cf2 <QuerySet [\{'id': 1, 'title': 'C#', 'desc': 'stuff about C Sharp', 'created_at': datetime.datetime(2019, 6, 18, 20, 34, 47, 109150, tzinfo=<UTC>), 'updated_at': datetime.datetime(2019, 6, 18, 20, 43, 9, 333839, tzinfo=<UTC>)\}, \{'id': 2, 'title': 'Java', 'desc': 'stuff about Java', 'created_at': datetime.datetime(2019, 6, 18, 20, 35, 6, 711571, tzinfo=<UTC>), 'updated_at': datetime.datetime(2019, 6, 18, 20, 35, 6, 711611, tzinfo=<UTC>)\}, \{'id': 3, 'title': 'Python', 'desc': 'stuff about Python', 'created_at': datetime.datetime(2019, 6, 18, 20, 35, 20, 476510, tzinfo=<UTC>), 'updated_at': datetime.datetime(2019, 6, 18, 20, 35, 20, 476558, tzinfo=<UTC>)\}, \{'id': 4, 'title': 'PHP', 'desc': 'stuff about PHP', 'created_at': datetime.datetime(2019, 6, 18, 20, 35, 32, 449636, tzinfo=<UTC>), 'updated_at': datetime.datetime(2019, 6, 18, 20, 35, 32, 449676, tzinfo=<UTC>)\}]>\
+\
+\cf5 In [
+\f1\b \cf6 82
+\f0\b0 \cf5 ]: \cf2 my_book = Book.objects.get(\cf5 id\cf2 =\cf5 5\cf2 )                                                         \
+\
+\cf5 In [
+\f1\b \cf6 83
+\f0\b0 \cf5 ]: \cf2 my_book.authors.all().values()                                                           \
+\cf11 Out[
+\f1\b \cf12 83
+\f0\b0 \cf11 ]: \cf2 <QuerySet [\{'id': 4, 'first_name': 'Bill', 'last_name': 'Shakespeare', 'notes': 'no notes added', 'created_at': datetime.datetime(2019, 6, 18, 20, 38, 7, 340537, tzinfo=<UTC>), 'updated_at': datetime.datetime(2019, 6, 18, 20, 44, 2, 771029, tzinfo=<UTC>)\}]>\
+\
+\cf5 In [
+\f1\b \cf6 84
+\f0\b0 \cf5 ]: \cf2                                                                                          }

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'books_authors_app/css/bootstrap.css'%}">
+
+    <title>Books & Authors</title>
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+
+        <div class="col right">
+            <h1 class="shadow p-3 mb-5 bg-white rounded"> {{ author.first_name }} {{ author.last_name }} </h1>
+            <h4>ID: {{ author.id }} </h4>
+            <h5> Notes: </h5>
+            <p> {{ author.notes }}</p>
+
+        <h4> Books:</h4>
+        {% for book in books %}
+            <ul>
+                <li>{{ book.title }} </li>
+            </ul>
+        {% endfor %}
+
+        </div> <!-- right side -->
+
+        <div class="col left"> 
+            <h1> Would you like to attribute an Author to this title? </h1>
+
+            <form action="/attribute_title" method="POST">
+                {% csrf_token %}
+                <input type="hidden" value="{{ author.id }}" name="auth_id">
+                
+                <select class="custom-select" name="book_id">
+                    <option selected disabled>Select Title</option>
+                {% for book in all_books %}
+                    <option value="{{ book.id }}"> {{ book.title }} </option>
+                {% endfor %} 
+                </select>
+                
+                <input type="submit" value="Add" class="btn btn-danger mt-3">
+            </form>
+
+        </div>
+    </div>
+</body>
+</html>

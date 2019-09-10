@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'semi_restful_app/css/bootstrap.css'%}">
+
+    <title>Semi Restful</title>
+</head>
+<body>
+    <div class="container">
+    <h1 id="main_title" class="shadow p-3 mb-5 bg-white rounded"> All Shows </h1>
+        <table class="table">
+            <thead class="thead-dark">
+              <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Title</th>
+                <th scope="col">Network</th>
+                <th scope="col">Release Date</th>
+                <th scope="col">Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+            {% for show in all_shows %}
+              <tr>
+                <th scope="row">{{ show.id }}</th>
+                <td>{{ show.title }}</td>
+                <td>{{ show.network }}</td>
+                <td>{{ show.release_date }}</td>
+                <td>
+                    <a class="btn btn-dark" href="/shows/{{ show.id }}">Show</a> |
+                    <a class="btn btn-dark" href="/shows/{{ show.id }}/edit">Edit</a> |
+                    <a class="btn btn-dark" href="/shows/{{ show.id }}/delete">Delete</a>
+                </td>
+              </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+        <a href="/shows/new" class="btn btn-info mb-5">Add New Show</a>
+
+
+    </div> <!-- end of container -->
+</body>
+</html>
