@@ -80,6 +80,8 @@ class User(models.Model):
     password = models.CharField(max_length=255)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+    # books_uploaded - related to "uploaded_by"
+    # liked_books - related to "users_who_like"
     objects = UserManager()
 
 class Book(models.Model):

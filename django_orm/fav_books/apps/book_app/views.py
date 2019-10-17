@@ -125,9 +125,9 @@ def favorite(request, book_id):
     for user in this_book.users_who_like.all():
         if user.id == request.session['id']:
             return redirect('/books')
-    else:
-        this_book.users_who_like.add(this_user)
+        else:
+            this_book.users_who_like.add(this_user)
 
-        return redirect('/books/book_id')
+            return redirect('/books/'+ book_id)
 
     
