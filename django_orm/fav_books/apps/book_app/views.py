@@ -15,9 +15,13 @@ def success_reg(request):
                 messages.error(request, value, extra_tags=key)
             return redirect("/")
         else: # no errors then this
-            user = User.objects.create(first_name=request.POST["first_name"], last_name=request.POST["last_name"], email=request.POST["email"], password=bcrypt.hashpw(request.POST['password'].encode(), bcrypt.gensalt()).decode())
+            user = User.objects.create(
+                first_name=request.POST["first_name"], 
+                last_name=request.POST["last_name"], 
+                email=request.POST["email"], 
+                password=bcrypt.hashpw(request.POST['password'].encode(), bcrypt.gensalt()).decode()
+            )
 
-            request.session['first_name'] = request.POST['first_name']
             request.session['id'] = user.id
             return redirect('/books')
 
@@ -29,30 +33,17 @@ def success_log(request):
         if len(errors) > 0:
             return redirect("/")
         else: # no errors than this 
-
             user_email = request.POST['email_input']
             user = User.objects.get(email=user_email)
-            request.session['first_name'] = user.first_name
-            request.session['last_name'] = user.last_name
             request.session['id'] = user.id
-
             return redirect('/books')
 
 def books(request):
-    if not 'first_name' in request.session:
+    if not 'id' in request.session:
         errors = User.objects.not_logged(request.POST)
         for key, value in errors.items():
             messages.error(request, value, extra_tags=key)
         return redirect("/")
-    elif not 'last_name' in request.session:
-        errors = User.objects.success_login_validation(request.POST)
-        for key, value in errors.items():
-            messages.error(request, value, extra_tags=key)
-            context = {
-                "all_books": Book.objects.all()
-            }
-
-            return render(request, "book_app/books.html", context)
     else: 
         errors = User.objects.success_reg_validation(request.POST)
         for key, value in errors.items():
