@@ -36,7 +36,7 @@ def success_log(request):
             user_email = request.POST['email_input']
             user = User.objects.get(email=user_email)
             request.session['id'] = user.id
-            return redirect('/books')
+            return redirect('/books', errors=errors)
 
 def books(request):
     if not 'id' in request.session:
@@ -45,7 +45,7 @@ def books(request):
             messages.error(request, value, extra_tags=key)
         return redirect("/")
     else: 
-        errors = User.objects.success_reg_validation(request.POST)
+        errors = User.objects.success_login_validation(request.POST)
         for key, value in errors.items():
             messages.error(request, value, extra_tags=key)
             context = {
@@ -53,7 +53,7 @@ def books(request):
                 "user": User.objects.get(id=request.session['id'])
             }
             return render(request, "book_app/books.html", context)
-
+        
 def logout(request):
     request.session.clear()
     return redirect('/')

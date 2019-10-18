@@ -56,11 +56,6 @@ class UserManager(models.Manager):
 
     def success_login_validation(self, postData):
         errors = {}
-        errors['success'] = "You have successfully registered!"
-        return errors
-
-    def success_reg_validation(self, postData):
-        errors = {}
         errors['success'] = "You have successfully logged in!"
         return errors
 
