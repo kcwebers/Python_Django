@@ -45,13 +45,19 @@ def books(request):
             messages.error(request, value, extra_tags=key)
         return redirect("/")
     else: 
-        errors = User.objects.success_login_validation(request.POST)
-        for key, value in errors.items():
-            messages.error(request, value, extra_tags=key)
-            context = {
-                "all_books": Book.objects.all(), # pulls the entire book class, need to loop through to access sub
-                "user": User.objects.get(id=request.session['id'])
+        user = User.objects.get(id = request.session['id'])
+        context = {
+            "all_books": Book.objects.all(), # pulls the entire book class, need to loop through to access sub
+            "user": user
             }
+        if not 'first_name' in request.session:
+            request.session['first_name'] = user.first_name
+            print("hello there")
+            errors = User.objects.success_login_validation(request.POST)
+            for key, value in errors.items():
+                messages.error(request, value, extra_tags=key)
+                return render(request, "book_app/books.html", context)
+        else:
             return render(request, "book_app/books.html", context)
         
 def logout(request):
