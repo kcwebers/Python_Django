@@ -7,12 +7,12 @@
     {% load static %}
     <link rel="stylesheet" href="{% static 'book_app/css/bootstrap.css'%}">
 
-    <title>Login & Register</title>
+    <title>Favorite Books</title>
 </head>
 <body>
     <div class="container">
         <a href="/logout" class="btn btn-danger float-right mt-4 mr-4">Log Out</a>
-        <h1 class="border border-info shadow p-3 mr-2 mb-2"> Welcome  {{ request.session.first_name }} !</h1>
+        <h1 class="border border-info shadow p-3 mr-2 mb-2"> Welcome  {{ user.first_name }} !</h1>
 
         {% if messages %} <!-- check if there are any messages -->
             {% for message in messages %} <!-- loop through the messages -->
@@ -62,11 +62,15 @@
         <h1 id="main_title" class="shadow p-3 bg-white rounded"> All Books </h1>
             <div id="scroll">
         {% for book in all_books %}
-            <div id="book_info" class="col border border-info shadow p-3 mr-2 mb-2">
+            <div id="book_info" class="col border border-info shadow p-3 mr-2 mb-4">
                 
                 <a href="/books/{{ book.id }}" class="display-3 btn text-info btn-dark">{{ book.title }}</a>
-                <p class="text-info">(added by {{ book.uploaded_by.first_name }} {{ book.uploaded_by.last_name }})</p>
-                    
+                <p class="text-info mb-3">(added by {{ book.uploaded_by.first_name }} {{ book.uploaded_by.last_name }})</p>
+
+                {% if user in book.users_who_like.all %}
+                    <p class="small">This book is already in your favorites!</p>
+                {% endif %}   
+
             </div>
         {% endfor %}
             </div>

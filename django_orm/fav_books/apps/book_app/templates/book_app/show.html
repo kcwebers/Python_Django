@@ -7,7 +7,7 @@
     {% load static %}
     <link rel="stylesheet" href="{% static 'book_app/css/bootstrap.css'%}">
 
-    <title>Login & Register</title>
+    <title>Favorite Books</title>
 </head>
 <body>
     <div class="container">
@@ -55,12 +55,19 @@
         
             <!-- Info Section -->
         <div class="col border border-info shadow p-3 mr-2 mb-2">
-            <h3>Would you also like to add to your favorites?</h3><a href="/books/{{ this_book.id }}/favorite">Add!</a>
+
+            <!-- If someone has book in their favorite already, they can unfavorite and vice verse -->
+             {% if user in this_book.users_who_like.all %}
+                <p>This book is already in your likes! <span><a class="btn btn-danger float-right" href="/books/{{this_book.id}}/unfavorite">Unfavorite</a></span></p>
+            {% else %}
+                <p>Would you like to add this book to your favorites?<span><a class="btn btn-info float-right" href="/books/{{this_book.id}}/favorite">Favorite</a></span></p>
+            {% endif %}
+            <!-- ---------------------------- -->
+            
             <h1 class="text-dark"> Users Who Like This Book </h1> 
             <ul>
             {% for user in favorites %}
                 <li>{{ user.first_name }} {{ user.last_name }}</li>
-
             {% endfor %}
             </ul>
         </div> <!-- end of right side -->

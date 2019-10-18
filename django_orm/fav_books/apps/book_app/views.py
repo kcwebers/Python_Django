@@ -59,6 +59,7 @@ def books(request):
             messages.error(request, value, extra_tags=key)
             context = {
                 "all_books": Book.objects.all(), # pulls the entire book class, need to loop through to access sub
+                "user": User.objects.get(id=request.session['id'])
             }
             return render(request, "book_app/books.html", context)
 
@@ -75,12 +76,15 @@ def add_book(request):
         if len(errors) > 0:
             return redirect("/")
         else:
-            this_adder = User.objects.get(id=request.session['id'])
-
-            new_book = Book.objects.create(title=request.POST['title'],desc=request.POST['desc'], uploaded_by=this_adder)
+            this_adder=User.objects.get(id=request.session['id'])
+            new_book = Book.objects.create(
+                title=request.POST['title'],
+                desc=request.POST['desc'], 
+                uploaded_by=this_adder
+            )
             # adds user as the book's uploader
-            
             new_book.users_who_like.add(this_adder) # when book added, user automatically favorites
+
         return redirect('/books')
 
 def update_book(request):
@@ -108,13 +112,15 @@ def show(request, book_id):
     this_book = Book.objects.get(id=book_id)
     if this_book.uploaded_by.id == request.session['id']:
         context = {
-            "this_book": Book.objects.get(id=book_id),
+            "user": User.objects.get(id=request.session['id']),
+            "this_book": this_book,
             "favorites": this_book.users_who_like.all()
         }
         return render(request, "book_app/edit_book.html", context)
     else:
         context = {
-            "this_book": Book.objects.get(id=book_id),
+            "user": User.objects.get(id=request.session['id']),
+            "this_book": this_book,
             "favorites": this_book.users_who_like.all()
         }
         return render(request, "book_app/show.html", context)
@@ -122,12 +128,18 @@ def show(request, book_id):
 def favorite(request, book_id):
     this_book = Book.objects.get(id=book_id)
     this_user = User.objects.get(id=request.session['id'])
-    for user in this_book.users_who_like.all():
-        if user.id == request.session['id']:
-            return redirect('/books')
-        else:
-            this_book.users_who_like.add(this_user)
+    if this_user in this_book.users_who_like.all():
+        return redirect('/books')
+    else:
+        this_book.users_who_like.add(this_user)
+        return redirect('/books/'+ str(book_id))
 
-            return redirect('/books/'+ book_id)
+def unfavorite(request, book_id):
+    this_book = Book.objects.get(id=book_id)
+    this_user = User.objects.get(id=request.session['id'])
+    
+    this_book.users_who_like.remove(this_user)
+    return redirect('/books/' + str(book_id))
+
 
     

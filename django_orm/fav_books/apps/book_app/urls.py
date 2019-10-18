@@ -12,5 +12,5 @@ urlpatterns = [
     url(r'^books/(?P<book_id>\d+)$', views.show),
     url(r'^books/(?P<book_id>\d+)/delete$', views.delete),
     url(r'^books/(?P<book_id>\d+)/favorite$', views.favorite),
-    url(r'^books/(?P<book_id>\d+)/un_favorite$', views.delete),
+    url(r'^books/(?P<book_id>\d+)/unfavorite$', views.unfavorite),
 ]
