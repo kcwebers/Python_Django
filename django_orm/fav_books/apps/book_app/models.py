@@ -62,8 +62,6 @@ class UserManager(models.Manager):
 class BookManager(models.Manager):
     def book_validator(self, postData):
         errors = {}
-        # if not postData['image']:
-        #     errors['image'] = "Please add an image before upoading!"
         if len(postData['title']) < 1:
             errors['title'] = "Please enter a title"
         if len(postData['desc']) < 5:

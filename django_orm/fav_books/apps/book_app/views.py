@@ -3,7 +3,12 @@ from datetime import datetime
 from .models import *
 from django.contrib import messages
 import bcrypt
-from django.core.files.storage import FileSystemStorage
+
+import re
+
+IMAGE_REGEX = re.compile(r'^([/|.|\w|\s|-])*\.(?:jpg|gif|png)')
+# REGEX for confirming that image path is correct
+# image path validation handled in views.py because of request.FILEs translation
 
 def index(request):
     return render(request, 'book_app/index.html')
@@ -70,6 +75,11 @@ def add_book(request):
         errors = Book.objects.book_validator(request.POST)
         image = request.FILES.get('image', 'anonymous.jpg')
 
+        # image path validaiton for jpg, png, jpeg
+        if not IMAGE_REGEX.match(str(image)):
+            errors['image'] = "Please enter a .png, .jgp, or .jpeg file"
+        # image path validation handled in views.py because of request.FILES translation to models.py
+
         for key, value in errors.items():
             messages.error(request, value, extra_tags=key)
             return redirect('/books')
@@ -84,6 +94,8 @@ def add_book(request):
                 uploaded_by=this_adder,
                 image = image
             )
+            print(image)
+            print( "******************" )
             # adds user as the book's uploader
             new_book.users_who_like.add(this_adder) # when book added, user automatically favorites
 
