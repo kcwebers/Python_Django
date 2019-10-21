@@ -16,7 +16,7 @@
                 $("#alert").fadeTo(500, 0).slideUp(500, function(){
                     $(this).remove();
                 });
-            }, 5000);
+            }, 1000);
         });
     </script>
 
@@ -49,7 +49,7 @@
             <div class="col border border-info shadow p-3 mr-2 mb-2">
                 <h1 class="text-info"> Add a Book </h1> 
 
-            <form class="form-control" action="/add_book" method="POST">
+            <form class="form-control" action="/add_book" method="POST" enctype="multipart/form-data">
                 {% csrf_token %}
                 <div class="form-group">
 
@@ -73,6 +73,18 @@
                     {% endfor %}
                 {% endif %}
                 <textarea type="text" class="form-control" id="desc" placeholder="Please provide a short summary" name="desc" rows="5"></textarea>
+
+                <label for="name_input">Image:</label>
+                {% if messages %} <!-- check if there are any messages -->
+                    {% for message in messages %} <!-- loop through the messages -->
+                        {% if message.extra_tags == 'image' %}
+                        <span class="error text-danger small">{{ message }}</span> <!-- display each message in a paragraph tag -->
+                        {% endif %}
+                    {% endfor %}
+                {% endif %}
+                <div class="form-group">
+                    <input type="file" class="form-control-file" id="exampleFormControlFile1" name="image">
+                </div>
 
                 <input type="submit" class="btn btn-info mt-3 text-dark" value="Add to Books">
                 </div>

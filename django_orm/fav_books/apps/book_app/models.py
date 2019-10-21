@@ -62,6 +62,8 @@ class UserManager(models.Manager):
 class BookManager(models.Manager):
     def book_validator(self, postData):
         errors = {}
+        # if not postData['image']:
+        #     errors['image'] = "Please add an image before upoading!"
         if len(postData['title']) < 1:
             errors['title'] = "Please enter a title"
         if len(postData['desc']) < 5:
@@ -83,8 +85,10 @@ class Book(models.Model):
     title = models.CharField(max_length=255)
     desc = models.TextField()
     uploaded_by = models.ForeignKey(User, related_name="books_uploaded")
-    users_who_like = models.ManyToManyField(User, related_name="liked_books")
+    users_who_like = models.ManyToManyField(User, related_name="liked_books") 
+    image = models.ImageField(upload_to="", blank=True, null=True, default='settings.MEDIA_ROOT/anonymous.jpg')
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     objects = BookManager()
 
+  

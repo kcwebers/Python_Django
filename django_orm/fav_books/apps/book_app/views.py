@@ -3,6 +3,7 @@ from datetime import datetime
 from .models import *
 from django.contrib import messages
 import bcrypt
+from django.core.files.storage import FileSystemStorage
 
 def index(request):
     return render(request, 'book_app/index.html')
@@ -67,6 +68,8 @@ def logout(request):
 def add_book(request):
     if request.method == "POST":
         errors = Book.objects.book_validator(request.POST)
+        image = request.FILES.get('image', 'anonymous.jpg')
+
         for key, value in errors.items():
             messages.error(request, value, extra_tags=key)
             return redirect('/books')
@@ -74,10 +77,12 @@ def add_book(request):
             return redirect("/")
         else:
             this_adder=User.objects.get(id=request.session['id'])
+
             new_book = Book.objects.create(
                 title=request.POST['title'],
                 desc=request.POST['desc'], 
-                uploaded_by=this_adder
+                uploaded_by=this_adder,
+                image = image
             )
             # adds user as the book's uploader
             new_book.users_who_like.add(this_adder) # when book added, user automatically favorites

@@ -11,10 +11,11 @@
 </head>
 <body>
     <div class="container">
-        <a href="/logout" class="btn btn-danger float-right mt-4 mr-4">Log Out</a>
-        <a href="/books" class="btn btn-danger float-right mt-4 mr-4">Home</a>
-        <h1 class="border border-info shadow p-3 mr-2 mb-2"> Welcome  {{ request.session.first_name }} !</h1>
-        
+        <div class="mt-4 mb-4">
+            <a href="/logout" class="btn btn-danger float-right mt-4 mr-4">Log Out</a>
+            <a href="/books" class="btn btn-danger float-right mt-4 mr-4">Home</a>
+            <h1 class="border border-info shadow p-3 mr-2 mb-2"> Welcome  {{ request.session.first_name }} !</h1>
+        </div>
     <div class="row">
         <div class="col border border-info shadow p-3 mr-2 mb-2">
 
@@ -52,6 +53,19 @@
                     <p class="form-control-plaintext" id="release">{{ this_book.updated_at }}</p>
                 </div>
             </div>
+            <div class="form-group row">
+                <label for="image" class="text-danger col-sm-4 col-form-label">Image (optional):</label>
+                <div class="col-md-8">
+                    <p class="form-control-plaintext" id="image">
+                        {% if this_book.image %}
+                        <img src="{{ this_book.image.url }}" alt="book image">
+                        {% else %}
+                        <span class="text-info">No image provided</span>
+                        {% endif %}
+                    </p>
+                </div>
+            </div>
+
             <div class="form-group row">
                 <label for="descript" class="text-danger col-sm-4 col-form-label">Description:</label>
                 {% if messages %} 
