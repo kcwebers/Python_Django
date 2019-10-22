@@ -58,7 +58,7 @@
                 <div class="col-md-8">
                     <p class="form-control-plaintext" id="image">
                         {% if this_book.image %}
-                        <img src="{{ this_book.image.url }}" alt="book image">
+                        <img src="{{ this_book.image.url }}" class="img-fluid" style="width: 200px" alt="book image">
                         {% else %}
                         <span class="text-info">No image provided</span>
                         {% endif %}

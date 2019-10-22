@@ -6,6 +6,15 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     {% load static %}
     <link rel="stylesheet" href="{% static 'book_app/css/bootstrap.css'%}">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script>
+        // You could also put this code in another JavaScript file... Remember to user $(document).ready() if the script tag is included before the DOM nodes you care about...
+        $('form').submit(function(e){
+            // preventDefault stops the default action of the event (e) from being triggered.
+            e.preventDefault();
+            console.log("Form submitted but no HTTP request sent to server!");
+        });
+    </script>
 
     <title>Favorite Books</title>
 </head>
