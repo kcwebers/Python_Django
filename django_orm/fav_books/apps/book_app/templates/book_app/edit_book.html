@@ -76,7 +76,7 @@
                     {% endfor %}
                 {% endif %}
                 <div class="col-md-8">
-                        <textarea type="text" class="form-control" id="desc" placeholder="Please provide a short summary" name="desc" rows="5">{{ this_book.desc }} </textarea>
+                        <textarea style="resize: none;" type="text" class="form-control" id="desc" placeholder="Please provide a short summary" name="desc" rows="5">{{ this_book.desc }} </textarea>
                 </div>
                 <input type="submit" class="btn btn-info text-dark mt-3 ml-3" value="Update"> <a href="/books/{{ this_book.id }}/delete" class="btn btn-info text-dark mt-3 ml-2">Delete</a>
                 </div>

@@ -72,7 +72,7 @@
                         {% endif %}
                     {% endfor %}
                 {% endif %}
-                <textarea type="text" class="form-control" id="desc" placeholder="Please provide a short summary" name="desc" rows="5"></textarea>
+                <textarea style="resize: none;" type="text" class="form-control" id="desc" placeholder="Please provide a short summary" name="desc" rows="5"></textarea>
 
                 <label for="name_input">Image:</label>
                 {% if messages %} <!-- check if there are any messages -->
@@ -97,14 +97,22 @@
         <h1 id="main_title" class="shadow p-3 bg-white rounded"> All Books </h1>
             <div id="scroll">
         {% for book in all_books %}
-            <div id="book_info" class="col border border-info shadow p-3 mr-2 mb-4">
-                
-                <a href="/books/{{ book.id }}" class="display-3 btn text-info btn-dark">{{ book.title }}</a>
-                <p class="text-info mb-3">(added by {{ book.uploaded_by.first_name }} {{ book.uploaded_by.last_name }})</p>
+            <div class="row border border-info shadow p-3 mb-4">
+                <div class="col">
+                    <a href="/books/{{ book.id }}" class="display-3 btn text-info btn-dark">{{ book.title }}</a>
+                    <p class="text-info mb-3">(added by {{ book.uploaded_by.first_name }} {{ book.uploaded_by.last_name }})</p>
 
-                {% if user in book.users_who_like.all %}
-                    <p class="small">This book is already in your favorites!</p>
-                {% endif %}   
+                    {% if user in book.users_who_like.all %}
+                        <p class="small">This book is already in your favs!</p>
+                    {% endif %} 
+                </div>  
+                <div class="col">
+                    {% if book.image %}
+                    <img src="{{ book.image.url }}" class="img-fluid" alt="book image">
+                    {% else %}
+                    <span class="text-info">No image provided</span>
+                    {% endif %}
+                </div>
 
             </div>
         {% endfor %}
