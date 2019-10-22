@@ -40,6 +40,13 @@
 *::after {
   box-sizing: border-box;
 }
+#background{
+  position: fixed;
+  width: 75%;
+  height: 75%;
+  right: -127px;
+  top: 155px;
+}
 #scroll{
   height: 395px;
   overflow-y: scroll;

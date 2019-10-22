@@ -19,117 +19,127 @@
     <title>Favorite Books</title>
 </head>
 <body>
+    <video playsininline muted autoplay loop id="background">
+        <source src="{% static 'book_app/images/booky.mov' %}" type="video/mp4">
+        <source src="{% static 'book_app/images/booky.ogg' %}" type="video/ogg">
+            Your browser does not support the video tag.
+    </video>
     <div class="container">
-    <h1 id="title_main" class="display-1 text-center border border-info mt-4 shadow pt-2 pb-3 mr-2 mb-2">Welcome to </br> Booky!</h1>
-    <h4 class="text-center mt-3">Share your favorite books with you friends!</h1>
-    <div class="row">
-    <div class="col border border-info shadow p-3 mr-2 mb-2">
-        <h1 class="text-info"> Registration </h1> 
 
-        <form class="form-control" action="/register" method="POST">
-            {% csrf_token %}
-            <div class="form-group">
-
-        <label for="name_input">First Name:</label>
-        {% if messages %} <!-- check if there are any messages -->
-            {% for message in messages %} <!-- loop through the messages -->
-                {% if message.extra_tags == 'first_name' %}
-                <span class="error text-danger small">{{ message }}</span> <!-- display each message in a paragraph tag -->
-                {% endif %}
-            {% endfor %}
-        {% endif %}
-            <input type="name" name="first_name" class="form-control">
-
-        <label for="name_input">Last Name:</label>
-        {% if messages %} <!-- check if there are any messages -->
-            {% for message in messages %} <!-- loop through the messages -->
-                {% if message.extra_tags == 'last_name' %}
-                <span class="error text-danger small">{{ message }}</span> <!-- display each message in a paragraph tag -->
-                {% endif %}
-            {% endfor %}
-        {% endif %}
-            <input type="name" name="last_name" class="form-control">
-
-        <label for="name_input">Email:</label>
-        {% if messages %} <!-- check if there are any messages -->
-            {% for message in messages %} <!-- loop through the messages -->
-                {% if message.extra_tags == 'email' or message.extra_tags == 'email_made'%}
-                <span class="error text-danger small">{{ message }}</span> <!-- display each message in a paragraph tag -->
-                {% endif %}
-            {% endfor %}
-        {% endif %}
-            <input type="email" name="email" class="form-control">
-
-        <label for="name_input">Password:</label>
-        {% if messages %} <!-- check if there are any messages -->
-            {% for message in messages %} <!-- loop through the messages -->
-                {% if message.extra_tags == 'password' %}
-                <span class="error text-danger small">{{ message }}</span> <!-- display each message in a paragraph tag -->
-                {% endif %}
-            {% endfor %}
-        {% endif %}
-            <input type="password" name="password" class="form-control">
-
-        <label for="name_input">Confirm Password:</label>
-        {% if messages %} <!-- check if there are any messages -->
-            {% for message in messages %} <!-- loop through the messages -->
-                {% if message.extra_tags == 'pass_conf' %}
-                <span class="error text-danger small">{{ message }}</span> <!-- display each message in a paragraph tag -->
-                {% endif %}
-            {% endfor %}
-        {% endif %}
-            <input type="password" name="conf_pass" class="form-control">
-
-                <input type="submit" class="mt-2 btn btn-info" value="Register">
+        <div class="row">
+            <div class="col">
+                <h1 id="title_main" class="display-1 text-center border border-info mt-4 shadow pt-2 pb-3 mr-2 mb-2">Welcome to </br> <span class="text-danger">Booky!</span></h1>
+                <h4 class="text-center mt-3">Share your favorite books with you friends!</h1>
             </div>
-        </form>
-
-    </div> 
-
-    <!-- Login Section -->
-        
-    <div class="col border border-info shadow p-3 ml-2 mb-2">
-        <h1 class="text-info"> Login </h1> 
-        {% if messages %} <!-- check if there are any messages -->
-            {% for message in messages %} <!-- loop through the messages -->
-                {% if message.extra_tags == 'no' %}
-                <span class="error text-danger small">{{ message }}</span> <!-- display each message in a paragraph tag -->
-                {% endif %}
-            {% endfor %}
-        {% endif %}
-
-        <form class="form-control" action="/login" method="POST">
-            {% csrf_token %}
-            <div class="form-group">
-
-        <label for="name_input">Email:</label>
-        {% if messages %} <!-- check if there are any messages -->
-            {% for message in messages %} <!-- loop through the messages -->
-                {% if message.extra_tags == 'not_email' or message.extra_tags == 'email_len' %}
-                <span class="error text-danger small">{{ message }}</span> <!-- display each message in a paragraph tag -->
-                {% endif %}
-            {% endfor %}
-        {% endif %}
-            <input type="email" name="email_input" class="form-control">
-
-
-        <label for="name_input">Password:</label>
-        {% if messages %} <!-- check if there are any messages -->
-            {% for message in messages %} <!-- loop through the messages -->
-                {% if message.extra_tags == 'password_input' or message.extra_tags == 'wrong_pass' %}
-                <span class="error text-danger small">{{ message }}</span> <!-- display each message in a paragraph tag -->
-                {% endif %}
-            {% endfor %}
-        {% endif %}
-            <input type="password" name="password_input" class="form-control">
-
-            <input type="submit" class="mt-2 btn btn-info" value="Login">
-        </form>
-
         </div>
-    </div>
+        <div class="row">
+            <div class="col border border-info shadow p-3 mr-2 mb-2">
+                <h1 class="text-info"> Registration </h1> 
+
+                <form class="form-control" action="/register" method="POST">
+                    {% csrf_token %}
+                    <div class="form-group">
+
+                <label for="name_input">First Name:</label>
+                {% if messages %} <!-- check if there are any messages -->
+                    {% for message in messages %} <!-- loop through the messages -->
+                        {% if message.extra_tags == 'first_name' %}
+                        <span class="error text-danger small">{{ message }}</span> <!-- display each message in a paragraph tag -->
+                        {% endif %}
+                    {% endfor %}
+                {% endif %}
+                    <input type="name" name="first_name" class="form-control">
+
+                <label for="name_input">Last Name:</label>
+                {% if messages %} <!-- check if there are any messages -->
+                    {% for message in messages %} <!-- loop through the messages -->
+                        {% if message.extra_tags == 'last_name' %}
+                        <span class="error text-danger small">{{ message }}</span> <!-- display each message in a paragraph tag -->
+                        {% endif %}
+                    {% endfor %}
+                {% endif %}
+                    <input type="name" name="last_name" class="form-control">
+
+                <label for="name_input">Email:</label>
+                {% if messages %} <!-- check if there are any messages -->
+                    {% for message in messages %} <!-- loop through the messages -->
+                        {% if message.extra_tags == 'email' or message.extra_tags == 'email_made'%}
+                        <span class="error text-danger small">{{ message }}</span> <!-- display each message in a paragraph tag -->
+                        {% endif %}
+                    {% endfor %}
+                {% endif %}
+                    <input type="email" name="email" class="form-control">
+
+                <label for="name_input">Password:</label>
+                {% if messages %} <!-- check if there are any messages -->
+                    {% for message in messages %} <!-- loop through the messages -->
+                        {% if message.extra_tags == 'password' %}
+                        <span class="error text-danger small">{{ message }}</span> <!-- display each message in a paragraph tag -->
+                        {% endif %}
+                    {% endfor %}
+                {% endif %}
+                    <input type="password" name="password" class="form-control">
+
+                <label for="name_input">Confirm Password:</label>
+                {% if messages %} <!-- check if there are any messages -->
+                    {% for message in messages %} <!-- loop through the messages -->
+                        {% if message.extra_tags == 'pass_conf' %}
+                        <span class="error text-danger small">{{ message }}</span> <!-- display each message in a paragraph tag -->
+                        {% endif %}
+                    {% endfor %}
+                {% endif %}
+                    <input type="password" name="conf_pass" class="form-control">
+
+                        <input type="submit" class="mt-2 btn btn-info" value="Register">
+                    </div>
+                </form>
+
+            </div> 
+
+            <!-- Login Section -->
+                
+            <div class="col border border-info shadow p-3 ml-2 mb-2">
+                <h1 class="text-info"> Login </h1> 
+                {% if messages %} <!-- check if there are any messages -->
+                    {% for message in messages %} <!-- loop through the messages -->
+                        {% if message.extra_tags == 'no' %}
+                        <span class="error text-danger small">{{ message }}</span> <!-- display each message in a paragraph tag -->
+                        {% endif %}
+                    {% endfor %}
+                {% endif %}
+
+                <form class="form-control" action="/login" method="POST">
+                    {% csrf_token %}
+                    <div class="form-group">
+
+                <label for="name_input">Email:</label>
+                {% if messages %} <!-- check if there are any messages -->
+                    {% for message in messages %} <!-- loop through the messages -->
+                        {% if message.extra_tags == 'not_email' or message.extra_tags == 'email_len' %}
+                        <span class="error text-danger small">{{ message }}</span> <!-- display each message in a paragraph tag -->
+                        {% endif %}
+                    {% endfor %}
+                {% endif %}
+                    <input type="email" name="email_input" class="form-control">
+
+
+                <label for="name_input">Password:</label>
+                {% if messages %} <!-- check if there are any messages -->
+                    {% for message in messages %} <!-- loop through the messages -->
+                        {% if message.extra_tags == 'password_input' or message.extra_tags == 'wrong_pass' %}
+                        <span class="error text-danger small">{{ message }}</span> <!-- display each message in a paragraph tag -->
+                        {% endif %}
+                    {% endfor %}
+                {% endif %}
+                    <input type="password" name="password_input" class="form-control">
+
+                    <input type="submit" class="mt-2 btn btn-info" value="Login">
+                </form>
+
+                </div>
+            </div>
         
-    </div> <!-- div row end -->
+        </div> <!-- div row end -->
     </div> <!-- container end-->
 
 </body>
