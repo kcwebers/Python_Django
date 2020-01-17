@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'wish_app/css/bootstrap.css'%}">
+
+    <title>Make a Wish</title>
+</head>
+<body>
+    <div class="container">
+        <a href="/logout" class="btn btn-danger float-right mt-4 mr-4">Log Out</a>
+        <a href="/wishes" class="btn btn-danger float-right mt-4 mr-4">Home</a>
+        <h1 class="border border-info shadow p-3 mr-2 mb-2"> Hello  {{ request.session.first_name }}! Check your 'Wish Stats' down below!</h1>
+        
+    <div class="row">
+        <div class="col border border-info shadow p-3 mr-2 mb-2">
+
+            <div class="form-group row">
+                <label for="tv_id" class="text-danger col-sm-8 col-form-label"><h2> Total number of wishes granted on this site! ~</h2></label>
+                <div class="col-md-4">
+                    <h2> {{ total_granted_wishes }}  </h2>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="tv_id" class="text-danger col-sm-8 col-form-label"><h2> Total number of wishes granted for you! ~</h2></label>
+                <div class="col-md-4">
+                    <h2> {{ granted_wishes }}  </h2>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="tv_id" class="text-danger col-sm-8 col-form-label"><h2> Total number of wishes you have pending! ~</h2></label>
+                <div class="col-md-4">
+                    <h2> {{ numb_wishes }}  </h2>
+                </div>
+            </div>
+            
+            
+        </div>
+    </div><!-- end of rows -->
+    </div> <!-- end of container --> 
+</body>
+</html>
