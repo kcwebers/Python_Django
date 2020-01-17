@@ -24,9 +24,11 @@
         <label for="name_input">First Name:</label>
         {% if messages %} <!-- check if there are any messages -->
             {% for message in messages %} <!-- loop through the messages -->
+
                 {% if message.extra_tags == 'first_name' %}
                 <span class="error text-danger small">{{ message }}</span> <!-- display each message in a paragraph tag -->
                 {% endif %}
+                
             {% endfor %}
         {% endif %}
             <input type="name" name="first_name" class="form-control">

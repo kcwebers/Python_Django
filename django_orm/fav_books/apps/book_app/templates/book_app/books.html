@@ -67,7 +67,7 @@
                 <label for="name_input">Description:</label>
                 {% if messages %} <!-- check if there are any messages -->
                     {% for message in messages %} <!-- loop through the messages -->
-                        {% if message.extra_tags == 'desc' %}
+                        {%  if message.extra_tags == 'desc' %}
                         <span class="error text-danger small">{{ message }}</span> <!-- display each message in a paragraph tag -->
                         {% endif %}
                     {% endfor %}

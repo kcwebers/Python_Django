@@ -23,5 +23,4 @@ urlpatterns = [
     url(r'^', include('apps.book_app.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
     
-    
-    
+# added so media files will be properly added

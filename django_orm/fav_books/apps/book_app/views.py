@@ -6,7 +6,7 @@ import bcrypt
 
 import re
 
-IMAGE_REGEX = re.compile(r'^([/|.|\w|\s|-])*\.(?:jpg|gif|png)')
+IMAGE_REGEX = re.compile(r'^([/|.|\w|\s|-])*\.(?:jpg|jpeg|png)')
 # REGEX for confirming that image path is correct
 # image path validation handled in views.py because of request.FILEs translation
 
@@ -77,7 +77,7 @@ def add_book(request):
 
         # image path validaiton for jpg, png, jpeg
         if not IMAGE_REGEX.match(str(image)):
-            errors['image'] = "Please enter a .png, .jgp, or .jpeg file"
+            errors['image'] = "Please enter a .png, .gif, .jpg, or .jpeg file"
         # image path validation handled in views.py because of request.FILES translation to models.py
 
         for key, value in errors.items():
@@ -86,6 +86,7 @@ def add_book(request):
         if len(errors) > 0:
             return redirect("/")
         else:
+
             this_adder=User.objects.get(id=request.session['id'])
 
             new_book = Book.objects.create(
@@ -95,7 +96,7 @@ def add_book(request):
                 image = image
             )
             print(image)
-            print( "******************" )
+
             # adds user as the book's uploader
             new_book.users_who_like.add(this_adder) # when book added, user automatically favorites
 

@@ -43,10 +43,14 @@ class UserManager(models.Manager):
     def log_validator(self, postData):
         errors = {}
         user_info = User.objects.filter(email = postData['email_input'])
-        if len(user_info) < 1:
+        if len(postData['email_input']) < 1:
+            errors['not_email'] = "Please input valid email"
+        elif len(user_info) < 1:
             errors['not_email'] = "Email not found! Please register for an account before logging in"
 
-        if postData['password_input']: # if password has been inputted
+        if not postData['password_input']:
+            errors['wrong_pass'] = "Please input a valid password"
+        elif postData['password_input']: # if password has been inputted
             for user in User.objects.filter(email = postData['email_input']): # pulls user with the input email
                 if not bcrypt.checkpw(postData['password_input'].encode(), user.password.encode()): # compare the pulled users password with the input password, if not matching then ...
                     errors['wrong_pass'] = "Password does not match our records! Please try again"

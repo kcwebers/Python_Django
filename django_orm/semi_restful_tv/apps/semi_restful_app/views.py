@@ -3,6 +3,7 @@ from .models import Show
 from .models import *
 from django.contrib import messages
 
+
 def redir(request):
     return redirect("/shows")
 
@@ -46,7 +47,7 @@ def edit(request, show_id):
 
 def update(request, show_id):
     errors = Show.objects.validator(request.POST)
-    if len(errors):
+    if len(errors) > 1:
         for key, value in errors.items():
             messages.error(request, value, extra_tags=key)
         return redirect("/shows/"+ show_id + "/edit")
@@ -54,7 +55,7 @@ def update(request, show_id):
         updated_info = Show.objects.get(id=show_id)
         updated_info.title = request.POST['title']
         updated_info.network = request.POST['network']
-        updated_info.release_date = release_date=request.POST['released']
+        updated_info.release_date = request.POST['released']
         updated_info.desc = request.POST['descript']
         updated_info.save()
         return redirect("/shows")
