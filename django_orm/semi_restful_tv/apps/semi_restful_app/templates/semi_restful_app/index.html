@@ -13,7 +13,7 @@
     <div class="container">
     <h1 id="main_title" class="shadow p-3 mb-5 bg-white rounded"> All Shows </h1>
         <table class="table">
-            <thead class="thead-dark"
+            <thead class="thead-dark">
               <tr>
                 <th scope="col">ID</th>
                 <th scope="col">Title</th>
@@ -23,6 +23,7 @@
               </tr>
             </thead>
             <tbody>
+            {% if all_shows %}
             {% for show in all_shows %}
               <tr>
                 <th scope="row">{{ show.id }}</th>
@@ -36,6 +37,7 @@
                 </td>
               </tr>
             {% endfor %}
+            {% endif %}
             </tbody>
         </table>
         <a href="/shows/new" class="btn btn-info mb-5">Add New Show</a>

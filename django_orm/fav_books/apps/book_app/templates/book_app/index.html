@@ -111,8 +111,8 @@
                 <form class="form-control" action="/login" method="POST">
                     {% csrf_token %}
                     <div class="form-group">
-
                 <label for="name_input">Email:</label>
+
                 {% if messages %} <!-- check if there are any messages -->
                     {% for message in messages %} <!-- loop through the messages -->
                         {% if message.extra_tags == 'not_email' or message.extra_tags == 'email_len' %}
@@ -121,7 +121,6 @@
                     {% endfor %}
                 {% endif %}
                     <input type="email" name="email_input" class="form-control">
-
 
                 <label for="name_input">Password:</label>
                 {% if messages %} <!-- check if there are any messages -->

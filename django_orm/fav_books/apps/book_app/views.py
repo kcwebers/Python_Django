@@ -31,13 +31,24 @@ def success_reg(request):
             request.session['id'] = user.id
             return redirect('/books')
 
+
+
+
+
+
+
+
 def success_log(request):
     if request.method == "POST":
         errors = User.objects.log_validator(request.POST)
+
+
         for key, value in errors.items():
             messages.error(request, value, extra_tags=key)
+
         if len(errors) > 0:
             return redirect("/")
+
         else: # no errors than this 
             user_email = request.POST['email_input']
             user = User.objects.get(email=user_email)
@@ -114,7 +125,7 @@ def update_book(request):
             this_book = Book.objects.get(id=request.POST['book_id'])
             this_book.title = request.POST['title']
             this_book.desc = request.POST['desc']
-            this_book.save
+            this_book.save()
             return redirect('/books')
 
 def delete(request, book_id):

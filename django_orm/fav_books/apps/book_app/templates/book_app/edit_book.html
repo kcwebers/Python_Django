@@ -22,6 +22,7 @@
         <form class="form-control" action="/update_book" method="POST">
             {% csrf_token %}
             <input type="hidden" name="book_id" value="{{ this_book.id }}">
+            
             <div class="form-group row">
                 <label for="tv_id" class="text-danger col-sm-4 col-form-label"> Title: </label>
                 {% if messages %} 

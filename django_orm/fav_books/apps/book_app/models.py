@@ -39,7 +39,9 @@ class UserManager(models.Manager):
 
     def log_validator(self, postData):
         errors = {}
+
         user_info = User.objects.filter(email = postData['email_input'])
+
         if len(user_info) < 1:
             errors['not_email'] = "Email not found! Please register for an account before logging in"
 
@@ -82,7 +84,7 @@ class User(models.Model):
 class Book(models.Model):
     title = models.CharField(max_length=255)
     desc = models.TextField()
-    uploaded_by = models.ForeignKey(User, related_name="books_uploaded")
+    uploaded_by = models.ForeignKey(User, related_name="books_uploaded", on_delete=models.CASCADE)
     users_who_like = models.ManyToManyField(User, related_name="liked_books") 
     image = models.ImageField(upload_to="", blank=True, null=True, default='settings.MEDIA_ROOT/anonymous.jpg')
     created_at = models.DateTimeField(auto_now_add=True)
