@@ -75,18 +75,27 @@ class User(models.Model):
     last_name = models.CharField(max_length=255)
     email = models.CharField(max_length=255)
     password = models.CharField(max_length=255)
+
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+
     # books_uploaded - related to "uploaded_by"
     # liked_books - related to "users_who_like"
+
     objects = UserManager()
 
 class Book(models.Model):
     title = models.CharField(max_length=255)
     desc = models.TextField()
+
+
     uploaded_by = models.ForeignKey(User, related_name="books_uploaded", on_delete=models.CASCADE)
-    users_who_like = models.ManyToManyField(User, related_name="liked_books") 
+
+    users_who_like = models.ManyToManyField(User, related_name="liked_books")
+
+
     image = models.ImageField(upload_to="", blank=True, null=True, default='settings.MEDIA_ROOT/anonymous.jpg')
+
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     objects = BookManager()

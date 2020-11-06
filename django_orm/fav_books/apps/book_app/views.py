@@ -32,12 +32,6 @@ def success_reg(request):
             return redirect('/books')
 
 
-
-
-
-
-
-
 def success_log(request):
     if request.method == "POST":
         errors = User.objects.log_validator(request.POST)

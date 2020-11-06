@@ -15,7 +15,7 @@ def process_money(request):
         if request.POST['location'] == 'farm':
             amount_earned = random.randint(10, 20)
             request.session['gold_amount'] =  request.session['gold_amount'] + amount_earned
-            total = request.session['gold_amount']
+            # total = request.session['gold_amount']
 
             request.session['activity'] = request.session['activity'] + '<p class="list-group-item list-group-item-success"> Worked on a farm and earned $'+ str(amount_earned) + ' ' + '(' + str(datetime.now().strftime("%B, %d %Y %H:%M %p")) + ') </br> </p>'
 
@@ -23,7 +23,7 @@ def process_money(request):
         elif request.POST['location'] == 'cave':
             amount_earned = random.randint(5, 10)
             request.session['gold_amount'] =  request.session['gold_amount'] + amount_earned
-            total = request.session['gold_amount']
+            # total = request.session['gold_amount']
 
             request.session['activity'] = request.session['activity'] + '<p class="list-group-item list-group-item-success"> Chilled in a cave and earned $'+ str(amount_earned) + ' ' + '(' + str(datetime.now().strftime("%B, %d %Y %H:%M %p")) + ') </br> </p>'
 
@@ -31,7 +31,7 @@ def process_money(request):
         elif request.POST['location'] == 'home':
             amount_earned = random.randint(2, 5)
             request.session['gold_amount'] =  request.session['gold_amount'] + amount_earned
-            total = request.session['gold_amount']
+            # total = request.session['gold_amount']
 
             request.session['activity'] = request.session['activity'] + '<p class="list-group-item list-group-item-success"> Relaxed at home and earned $'+ str(amount_earned) + ' ' + '(' + str(datetime.now().strftime("%B, %d %Y %H:%M %p")) + ') </br> </p>'
 
@@ -39,15 +39,15 @@ def process_money(request):
         elif request.POST['location'] == 'casino':
             amount_earned = random.randint(-50, 50)
             request.session['gold_amount'] =  request.session['gold_amount'] + amount_earned
-            total = request.session['gold_amount']
+            # total = request.session['gold_amount']
 
             if amount_earned < 0:
                 request.session['activity'] = request.session['activity'] + '<p class="list-group-item list-group-item-danger"> Went to the casino and lost -$'+ str(amount_earned * -1) + ' ' + '(' + str(datetime.now().strftime("%B, %d %Y %H:%M %p")) + ') </br></p>'
             else:
                 request.session['activity'] = request.session['activity'] + '<p class="list-group-item list-group-item-success"> Went to the casino and won $'+ str(amount_earned) + ' ' + '(' + str(datetime.now().strftime("%B, %d %Y %H:%M %p")) + ') </br> </p>'
 
-    request.session['gold_amount']: total
-    request.session["activity"]: result
+    # request.session['gold_amount']: total
+    # request.session["activity"]: result
 
     return redirect("/")
 

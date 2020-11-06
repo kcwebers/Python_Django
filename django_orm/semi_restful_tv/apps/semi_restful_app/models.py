@@ -1,6 +1,6 @@
 from __future__ import unicode_literals
 from django.db import models
-from datetime import date
+from datetime import date, datetime
 
 class ShowManager(models.Manager):
     def validator(self, postData):
@@ -15,12 +15,12 @@ class ShowManager(models.Manager):
         if postData['descript']:
             if len(postData['descript']) < 10:
                 errors['descript'] = "Optional description must be at least 10 characters long"
-        # if len(postData['released']) < 10:
-        #     errors['released'] = "Please enter a valid date"
-        # elif len(postData['released']) == 10:
-        #     input_date = datetime.strptime(postData['released'], '%Y-%m-%d')
-        #     if input_date > datetime.now():
-        #         errors['released_new'] = "Please enter a valid date (must be in past)"
+        if len(postData['released']) < 10:
+            errors['released'] = "Please enter a valid date"
+        elif len(postData['released']) == 10:
+            input_date = datetime.strptime(postData['released'], '%Y-%m-%d')
+            if input_date > datetime.now():
+                errors['released_new'] = "Please enter a valid date (must be in past)"
         return errors
 
 class Show(models.Model):

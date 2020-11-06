@@ -30,7 +30,11 @@ def create(request):
             messages.error(request, value, extra_tags=key)
         return redirect("/shows/new")
     else:    
-        show = Show.objects.create(title=request.POST['title'], network=request.POST['network'], release_date=request.POST['released'], desc=request.POST['descript'])
+        show = Show.objects.create(
+            title=request.POST['title'], 
+            network=request.POST['network'], 
+            release_date=request.POST['released'], 
+            desc=request.POST['descript'])
         show_id = show.id
 
         return redirect("/shows/"+ str(show_id))
